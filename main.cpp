@@ -31,12 +31,24 @@ int main(int argc, char* argv[])
             if(height_from_argument > 0){ height = height_from_argument; }
         }
 
+        if( (argument == "--out" || argument == "-o") && (i+1 < argc) ){
+            filename = argv[i+1];
+        }
+
     }
 
     unsigned int final_width = static_cast<unsigned int>(width);
     unsigned int final_height = static_cast<unsigned int>(height);
 
     std::vector<unsigned char> image(final_width * final_height * 4, 255);
+
+    //initial fill vector woth red pixels
+    for(unsigned int i=0; i<final_width*final_height*4; i+=4){
+        image[i]=255;
+        image[i+1]=0;
+        image[i+2]=0;
+        image[i+3]=255;
+    }
 
     //conversion from string (command-liune argumewnts of width or height) yields an unsigned long
     //lodepng::encode expects a unsigned int though
