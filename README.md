@@ -1,6 +1,17 @@
 # sparkles
 Just a simple Raytracer for learning purposes
 
+## Documentation
+Note: In sparkles, the z-axis points upward
+
+### Command-line arguments
+All command-line arguments are optional, sparkles provides default values
+* '--width' or '-w' | the width of the final image, has to be followed by a positive integer number (e.g. --width 1920)
+* '--height' or '-h' | the height of the final image, has to be followed by a positive integer number (e.g. --height 1080)
+* '--out' or '-o' | the filename of the rendered image, has to be followed by the filename, (e.g. --out sparkles_image.png)
+* '--alpha' or '-a' | when a camera ray doesn't hit any object in the scene, the pixel will be transparent
+* '--dog' | instead of *meow*, sparkles does *woof,woof*
+
 ## Books
 Some books that are very useful for writing a raytraycer and for learning math
 * Peter Shirley, _Ray Tracing in One Weekend_ ([available online](https://raytracing.github.io/books/RayTracingInOneWeekend.html))
