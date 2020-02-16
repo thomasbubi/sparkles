@@ -85,12 +85,16 @@ public:
         z_ /= abs;
     }
 
-    inline Vector3 cross( const Vector3& lhs, const Vector3& rhs){
+    inline static Vector3 cross( const Vector3& lhs, const Vector3& rhs){
         return Vector3(
                 lhs.y_ * rhs.z_ - lhs.z_ * rhs.y_,
                 -( lhs.x_ * rhs.z_ ) + lhs.z_ * rhs.x_,
                 lhs.x_ * rhs.y_ - lhs.y_ * rhs.x_
         );
+    }
+
+    inline static double dot( const Vector3& lhs, const Vector3& rhs ){
+        return lhs.x_ * rhs.x_ + lhs.y_ * rhs.y_ +  lhs.z_ * rhs.z_;
     }
 
 private:
