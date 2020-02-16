@@ -18,6 +18,8 @@ public:
     inline Vector3 direction() const { return direction_; }
     inline void set_direction(const Vector3 &direction) { direction_ = direction; }
 
+    //get position at parameter t
+    inline Vector3 at( double t) { return origin_ + direction_ * t; }
 private:
     Vector3 origin_;
     Vector3 direction_;

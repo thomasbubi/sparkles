@@ -10,7 +10,7 @@ All command-line arguments are optional, sparkles provides default values
 * `--height` or `-h` | the height of the final image, has to be followed by a positive integer number (e.g. `--height 1080`)
 * `--out` or `-o` | the filename of the rendered image, has to be followed by the filename, (e.g. `--out sparkles_image.png`)
 * `--alpha` or `-a` | when a camera ray doesn't hit any object in the scene, the pixel will be transparent
-* `--dog` | instead of *meow*, sparkles does *woof,woof*
+* `--dog` | instead of _meow_, sparkles does _woof,woof_
 
 ## Books
 Some books that are very useful for writing a raytraycer and for learning math
