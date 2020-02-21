@@ -24,4 +24,4 @@ Some books that are very useful for writing a raytraycer and for learning math
 * Andrew S. Glassner, _Principles of Digital Image Synthesis_ ([available online](http://realtimerendering.com/Principles_of_Digital_Image_Synthesis_v1.0.1.pdf))
 
 ## other Resources
-* [Article series by Mike Farnsborough](https://raytracing.github.io/books/RayTracingTheRestOfYourLife.html), [code](https://github.com/Tecla/Rayito)
+* [Article series by Mike Farnsborough](http://renderspud.blogspot.com/2012/04/basic-ray-tracer-stage-1.html), [code](https://github.com/Tecla/Rayito)
