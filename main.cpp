@@ -6,6 +6,7 @@
 #include "scene/scene.h"
 #include "camera/perspectivecamera.h"
 #include "intersectables/plane.h"
+#include "intersectables/sphere.h"
 
 int main(int argc, char* argv[])
 {
@@ -55,8 +56,10 @@ int main(int argc, char* argv[])
 
     sparkles::PerspectiveCamera camera( sparkles::Vector3(0,1,0.5), sparkles::Vector3(0,-1,0), 35);
     sparkles::Plane* plane = new sparkles::Plane(sparkles::Vector3(0,0,0), sparkles::Vector3(0,0,1));
+    sparkles::Sphere* sphere = new sparkles::Sphere(sparkles::Vector3(0,-2,0.25), 0.5);
     sparkles::Scene scene{};
     scene.add_object(plane);
+    scene.add_object(sphere);
     scene.set_camera(camera);
     scene.set_resolution(final_width, final_height);
     if(use_alpha_background) scene.use_alpha_transparency();

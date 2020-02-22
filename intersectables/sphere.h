@@ -12,6 +12,8 @@ class Sphere : public Intersectable
 public:
     Sphere(const Vector3& position, double radius);
     double intersect(const Ray &ray);
+    inline std::string get_class_name() const { return "Sphere"; }
+
 };
 
 }

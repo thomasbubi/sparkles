@@ -18,13 +18,15 @@ namespace sparkles {
 
                 Ray view_ray = camera_.create_view_ray(i, j);
 
+                //store a pointer to the object with lowest distance in front of camera
                 double t = t_max;
                 Intersectable* nearest_object;
 
                 for(unsigned int o=0; o<objects_.size(); o++){
                     Intersectable* temp_object = objects_[o];
                     double temp_t =  temp_object->intersect(view_ray);
-                    if(temp_t < t){
+                    //if temp_t is positive, the object is in front of camera so
+                    if( temp_t >= 0 && temp_t < t){
                         nearest_object = temp_object;
                         t = temp_t;
                     }
@@ -36,7 +38,15 @@ namespace sparkles {
                     continue;
                 }
 
-                fill_pixel( image, i, j, 255, 0, 0, 255);
+                if(nearest_object->get_class_name() == "Plane"){
+                    fill_pixel( image, i, j, 255, 0, 0, 255);
+                }
+
+                if(nearest_object->get_class_name() == "Sphere"){
+                    fill_pixel( image, i, j, 255, 255, 0, 255);
+                }
+
+
 
             }
         }

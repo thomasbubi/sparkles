@@ -11,6 +11,7 @@ class Intersectable
 public:
     Intersectable();
     virtual double intersect(const Ray& ray) = 0;
+    virtual std::string get_class_name() const = 0;
 };
 
 }

@@ -12,6 +12,7 @@ class Plane : public Intersectable
 public:
     Plane(const Vector3& position, const Vector3& normal);
     double intersect(const Ray& ray);
+    inline std::string get_class_name() const { return "Plane"; }
 };
 
 }

@@ -10,7 +10,7 @@ PerspectiveCamera::PerspectiveCamera(const Vector3& pos, const Vector3& dir, dou
     aspect_ratio_ = 0;
 
     sensor_width_ = 0.036;//digital full frame camera
-    sensor_height_ = 0.036;
+    sensor_height_ = 0.024;
 
     position_ = pos;
     direction_ = dir;
@@ -27,12 +27,6 @@ PerspectiveCamera::PerspectiveCamera(const Vector3& pos, const Vector3& dir, dou
     axis_v_ = Vector3::cross(axis_u_, axis_w_);
     axis_v_.normalize();
 
-    std::cout << "cam pos" << position_ << std::endl;
-    std::cout << "cam dir" << direction_ << std::endl;
-
-    std::cout << "vec_u: " << axis_u_ << std::endl;
-    std::cout << "vec_v: " << axis_v_ << std::endl;
-    std::cout << "vec_w: " << axis_w_ << std::endl;
 }
 
 Ray PerspectiveCamera::create_view_ray(unsigned int i, unsigned int j)
