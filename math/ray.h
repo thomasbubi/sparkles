@@ -20,6 +20,12 @@ public:
 
     //get position at parameter t
     inline Vector3 at( double t) { return origin_ + direction_ * t; }
+
+    //enable console printing
+    inline friend std::ostream& operator<<(std::ostream& stream, const Ray& ray){
+        stream << "--> Ray: o:" << ray.origin_ << " d:" << ray.direction_;
+        return stream;
+    }
 private:
     Vector3 origin_;
     Vector3 direction_;
