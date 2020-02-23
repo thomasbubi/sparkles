@@ -4,6 +4,7 @@ project(sparkles)
 add_executable(
     ${PROJECT_NAME}
     "materials/shadelessmaterial.cpp"
+    "materials/normalmaterial.cpp"
     "intersectables/plane.cpp"
     "intersectables/sphere.cpp"
     "external/lodepng.cpp"

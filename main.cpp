@@ -8,6 +8,7 @@
 #include "intersectables/plane.h"
 #include "intersectables/sphere.h"
 #include "materials/shadelessmaterial.h"
+#include "materials/normalmaterial.h"
 
 int main(int argc, char* argv[])
 {
@@ -57,19 +58,20 @@ int main(int argc, char* argv[])
     sparkles::PerspectiveCamera camera(
         sparkles::Vector3(0,1,0.5),
         sparkles::Vector3(0,-1,0),
-        135
+        35
     );
 
     sparkles::Plane* plane = new sparkles::Plane(
         sparkles::Vector3(0,0,0),
         sparkles::Vector3(0,0,1),
-        new sparkles::ShadelessMaterial( sparkles::Color(1,1,0) )
+        //new sparkles::ShadelessMaterial( sparkles::Color(0.4,0.4,0.4) )
+        new sparkles::NormalMaterial()
     );
 
     sparkles::Sphere* sphere = new sparkles::Sphere(
-        sparkles::Vector3(-0.2,-2,0.25),
+        sparkles::Vector3(-0.2,-2,0.5),
         0.5,
-        new sparkles::ShadelessMaterial( sparkles::Color(1,1,1) )
+        new sparkles::NormalMaterial()
     );
 
     sparkles::Scene scene{};
