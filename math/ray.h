@@ -8,9 +8,15 @@ namespace sparkles {
 class Ray
 {
 public:
-    Ray(const Vector3& origin, const Vector3& direction);
-    Ray(double ox, double oy, double oz, double dx, double dy, double dz);
-    virtual ~Ray();
+    inline Ray(const Vector3& origin, const Vector3& direction){
+        origin_ = origin;
+        direction_ = direction;
+    }
+    inline Ray(double ox, double oy, double oz, double dx, double dy, double dz){
+        origin_ = Vector3(ox, oy, oz);
+        direction_ = Vector3(dx, dy, dz);
+    }
+    virtual inline ~Ray(){}
 
     //getters and setters
     inline Vector3 origin() const { return origin_; }

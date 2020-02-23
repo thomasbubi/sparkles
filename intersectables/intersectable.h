@@ -12,7 +12,8 @@ class Intersectable
 protected:
     Color color_;
 public:
-    Intersectable(const Color& color);
+    inline Intersectable(const Color& color){ color_ = color; }
+    inline ~Intersectable(){}
     virtual double intersect(const Ray& ray) = 0;
     virtual std::string get_class_name() const = 0;
     virtual Vector3 get_normal_at_t( const Ray& ray, double t) = 0;
