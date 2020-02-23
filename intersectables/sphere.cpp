@@ -2,7 +2,7 @@
 
 namespace sparkles {
 
-Sphere::Sphere(const Vector3 &position, double radius, const Color& color) : Intersectable(color)
+Sphere::Sphere(const Vector3 &position, double radius, Material* material) : Intersectable(material)
 {
     position_ = position;
     radius_ = radius;

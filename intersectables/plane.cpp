@@ -2,7 +2,7 @@
 
 namespace sparkles {
 
-Plane::Plane(const Vector3& position, const Vector3& normal, const Color& color) : Intersectable (color)
+Plane::Plane(const Vector3& position, const Vector3& normal, Material* material) : Intersectable (material)
 {
     position_ = position;
     normal_ = normal;

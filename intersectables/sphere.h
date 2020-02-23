@@ -10,7 +10,7 @@ class Sphere : public Intersectable
     Vector3 position_;
     double radius_;
 public:
-    Sphere(const Vector3& position, double radius, const Color& color);
+    Sphere(const Vector3& position, double radius, Material* material);
     double intersect(const Ray &ray);
     inline std::string get_class_name() const { return "Sphere"; }
     inline Vector3 get_normal_at_t(const Ray& ray, double t) {

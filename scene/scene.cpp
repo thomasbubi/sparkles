@@ -35,15 +35,16 @@ Color Scene::color_along_ray(const Ray& ray, unsigned int i, unsigned int j, uns
 
     if(nearest_object->get_class_name() == "Plane"){
         //fill_pixel( image, i, j, 255, 0, 0, 255);
-        return nearest_object->color();
+        //return nearest_object->color();
+        return nearest_object->material()->shade(ray, Vector3(), Vector3());
     }
 
     if(nearest_object->get_class_name() == "Sphere"){
-        Vector3 normal = nearest_object->get_normal_at_t(ray, t);
+        /*Vector3 normal = nearest_object->get_normal_at_t(ray, t);
         double r = floor( normal.x()*255.0 );
         double g = floor( normal.y()*255.0 );
         double b = floor( normal.z()*255.0 );
-        return Color(r,g,b);//nearest_object->color();
+        return Color(r,g,b);//*/return nearest_object->material()->shade(ray, Vector3(), Vector3());
 
         //fill_pixel( image, i, j, (int)floor(r), (int)floor(g), (int)floor(b), 255);
     }

@@ -2,7 +2,7 @@
 
 namespace sparkles {
 
-ShadelessMaterial::ShadelessMaterial(const Color& color)
+ShadelessMaterial::ShadelessMaterial( const Color& color )
 {
     color_ = color;
 }
