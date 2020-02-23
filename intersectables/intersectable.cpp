@@ -2,9 +2,9 @@
 
 namespace sparkles {
 
-Intersectable::Intersectable()
+Intersectable::Intersectable(const Color& color)
 {
-
+    color_ = color;
 }
 
 }

@@ -2,7 +2,7 @@
 
 namespace sparkles {
 
-Sphere::Sphere(const Vector3 &position, double radius)
+Sphere::Sphere(const Vector3 &position, double radius, const Color& color) : Intersectable(color)
 {
     position_ = position;
     radius_ = radius;
@@ -21,7 +21,7 @@ double Sphere::intersect(const Ray &ray)
 
     if(discriminant <= 0) return -1'000'000;
 
-    return 1.0;
+    return (-b - sqrt(discriminant) ) / 2*a;
 }
 
 }

@@ -10,7 +10,7 @@
 
 int main(int argc, char* argv[])
 {
-    bool printed_dog = false;
+    bool print_dog = false;
     unsigned long width = 600;
     unsigned long height = 400;
     std::string filename = "output.png";
@@ -21,8 +21,7 @@ int main(int argc, char* argv[])
         std::string argument = argv[i];
 
         if(argument == "--dog"){
-            std::cout << "woof, woof 🐶" << std::endl;
-            printed_dog = true;
+            print_dog = true;
         }
 
         if( (argument == "--width" || argument == "-w") && (i+1 < argc) ){
@@ -54,9 +53,24 @@ int main(int argc, char* argv[])
     //set the std::vector containing the pixels to the right size
     std::vector<unsigned char> image(final_width * final_height * 4, 255);
 
-    sparkles::PerspectiveCamera camera( sparkles::Vector3(0,1,0.5), sparkles::Vector3(0,-1,0), 35);
-    sparkles::Plane* plane = new sparkles::Plane(sparkles::Vector3(0,0,0), sparkles::Vector3(0,0,1));
-    sparkles::Sphere* sphere = new sparkles::Sphere(sparkles::Vector3(0,-2,0.25), 0.5);
+    sparkles::PerspectiveCamera camera(
+        sparkles::Vector3(0,1,0.5),
+        sparkles::Vector3(0,-1,0),
+        135
+    );
+
+    sparkles::Plane* plane = new sparkles::Plane(
+        sparkles::Vector3(0,0,0),
+        sparkles::Vector3(0,0,1),
+        sparkles::Color(1,0,0)
+    );
+
+    sparkles::Sphere* sphere = new sparkles::Sphere(
+        sparkles::Vector3(-0.2,-2,0.25),
+        0.5,
+        sparkles::Color(1,1,0)
+    );
+
     sparkles::Scene scene{};
     scene.add_object(plane);
     scene.add_object(sphere);
@@ -78,8 +92,10 @@ int main(int argc, char* argv[])
     std::cout << "PNG error: " << lodepng_error_text( error ) << std::endl;
 
     //always print an animal emoji - if dog isn't desired, print a cat
-    if(!printed_dog){
+    if(!print_dog){
         std::cout << "meow 🐱" << std::endl;//
+    } else {
+        std::cout << "woof, woof 🐶" << std::endl;
     }
 
     return 0;

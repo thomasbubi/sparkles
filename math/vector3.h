@@ -80,9 +80,13 @@ public:
 
     inline void normalize(){
         double abs = this->abs();
-        x_ /= abs;
-        y_ /= abs;
-        z_ /= abs;
+
+        if(abs != 0.0){
+            x_ /= abs;
+            y_ /= abs;
+            z_ /= abs;
+        }
+
     }
 
     inline static Vector3 cross( const Vector3& lhs, const Vector3& rhs){

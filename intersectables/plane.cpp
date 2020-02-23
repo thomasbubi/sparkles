@@ -2,7 +2,7 @@
 
 namespace sparkles {
 
-Plane::Plane(const Vector3& position, const Vector3& normal)
+Plane::Plane(const Vector3& position, const Vector3& normal, const Color& color) : Intersectable (color)
 {
     position_ = position;
     normal_ = normal;
@@ -10,7 +10,6 @@ Plane::Plane(const Vector3& position, const Vector3& normal)
 
 double Plane::intersect(const Ray &ray)
 {
-    //t = (dot(n, p0) - dot(n, origin)) / dot(n, direction)
     double dot_n_pos = Vector3::dot(normal_, position_);
     double dot_n_ori = Vector3::dot(normal_, ray.origin());
     double dot_n_dir = Vector3::dot(normal_, ray.direction());

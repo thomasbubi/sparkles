@@ -19,7 +19,9 @@ public:
     inline void set_direction(const Vector3 &direction) { direction_ = direction; }
 
     //get position at parameter t
-    inline Vector3 at( double t) { return origin_ + direction_ * t; }
+    inline Vector3 at( double t) {
+        return origin_ + direction_ * t;
+    }
 
     //enable console printing
     inline friend std::ostream& operator<<(std::ostream& stream, const Ray& ray){
