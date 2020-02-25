@@ -21,7 +21,10 @@ class Scene
     double t_min_;//near clipping plane
     unsigned int max_recursion_depth_;
 
-    inline void fill_pixel(std::vector<unsigned char>& image, unsigned int i, unsigned int j, unsigned char r, unsigned char g, unsigned char b, unsigned char a){
+    inline void fill_pixel(
+            std::vector<unsigned char>& image,
+            unsigned int i, unsigned int j,
+            unsigned char r, unsigned char g, unsigned char b, unsigned char a){
         unsigned int array_pos = ( j * resolution_x_ + i ) * 4;
         image[ array_pos] = r;
         image[ array_pos + 1] = g;
@@ -29,7 +32,10 @@ class Scene
         image[ array_pos + 3] = a;
     }
 
-    inline void fill_pixel(std::vector<unsigned char>& image, unsigned int i, unsigned int j, Color& color){
+    inline void fill_pixel(
+            std::vector<unsigned char>& image,
+            unsigned int i, unsigned int j,
+            Color& color){
         unsigned int array_pos = ( j * resolution_x_ + i ) * 4;
         image[ array_pos] = color.r() * 255;
         image[ array_pos + 1] = color.g() * 255;
@@ -37,12 +43,12 @@ class Scene
         image[ array_pos + 3] = color.a() * 255;
     }
 
-    //this function allows for recursive ray tracing, e.g. for reflection & refraction
-    //using recursion instead of iteration for this yields in cleaner code
-    Color color_along_ray(const Ray& ray, unsigned int i, unsigned int j, unsigned int recursion_depth, std::vector<unsigned char>& image);
 public:
     Scene();
     inline void add_object(Intersectable* obj){ objects_.push_back(obj); }
+    //this function allows for recursive ray tracing, e.g. for reflection & refraction
+    //using recursion instead of iteration for this yields in cleaner code
+    Color color_along_ray(const Ray& ray, unsigned int i, unsigned int j, unsigned int recursion_depth, std::vector<unsigned char>& image);
     void render(std::vector<unsigned char>& image);
     inline void set_resolution(unsigned int res_x, unsigned int res_y){
         resolution_x_ = res_x;

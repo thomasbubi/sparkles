@@ -10,7 +10,13 @@ class Material
 {
 public:
     inline Material(){};
-    virtual Color shade(const Ray& ray, const Vector3& intersection_point, const Vector3& normal) const = 0;
+    virtual Color shade(
+        const Ray& ray,
+        const Vector3& intersection_point,
+        const Vector3& normal,
+        unsigned int current_recursion_depth,
+        unsigned int max_recursion_depth
+    ) const = 0;
 };
 
 }

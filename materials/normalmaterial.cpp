@@ -7,7 +7,12 @@ NormalMaterial::NormalMaterial()
 
 }
 
-Color NormalMaterial::shade(const Ray &ray, const Vector3 &intersection_point, const Vector3 &normal) const
+Color NormalMaterial::shade(const Ray &ray,
+                           const Vector3 &intersection_point,
+                           const Vector3 &normal,
+                           unsigned int recursion_depth,
+                           unsigned int max_recursion_depth
+                        ) const
 {
     double r = 0.5 + normal.x() / 2;
     double g = 0.5 + normal.y() / 2;

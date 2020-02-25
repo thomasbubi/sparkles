@@ -8,6 +8,7 @@ Scene::Scene()
     use_alpha_transparency_ = false;
     t_max_ = 1'000'000.0;
     t_min_ = 0.05;
+    max_recursion_depth_ = 3;
 }
 
 Color Scene::color_along_ray(const Ray& ray, unsigned int i, unsigned int j, unsigned int recursion_depth, std::vector<unsigned char>& image)
@@ -33,10 +34,12 @@ Color Scene::color_along_ray(const Ray& ray, unsigned int i, unsigned int j, uns
         return Color(0,0,0, use_alpha_transparency_ ? 0 : 1);
     }
 
+    //change ray::at so copying view ray is not necessary
+    Ray temp_ray = Ray( ray.origin(), ray.direction() );
+    Vector3 intersection_point = temp_ray.at(t);
     Vector3 normal = nearest_object->get_normal_at_t(ray, t);
-    std::cout << normal << std::endl;
 
-    return nearest_object->material()->shade(ray, Vector3(), normal);
+    return nearest_object->material()->shade(ray, intersection_point, normal, recursion_depth, max_recursion_depth_);
 }
 
 void Scene::render(std::vector<unsigned char>& image)
