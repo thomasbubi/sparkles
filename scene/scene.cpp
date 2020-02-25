@@ -44,6 +44,10 @@ Color Scene::color_along_ray(const Ray& ray, unsigned int i, unsigned int j, uns
 
 void Scene::render(std::vector<unsigned char>& image)
 {
+    unsigned int number_of_threads = std::thread::hardware_concurrency();
+    std::cout << "sparkles will calculate " << number_of_threads << " pixels parallel." << std::endl;
+
+    auto time_begin = std::chrono::system_clock::now();
 
     for(unsigned int j=0; j<resolution_y_; j++){
         for(unsigned int i=0; i< resolution_x_; i++){
@@ -54,6 +58,10 @@ void Scene::render(std::vector<unsigned char>& image)
 
         }
     }
+
+    auto time_end = std::chrono::system_clock::now();
+    std::chrono::duration<double> render_time = time_end - time_begin;
+    std::cout << "rendering took " << render_time.count() << " seconds."  << std::endl;
 }
 
 }

@@ -2,6 +2,8 @@
 #define SCENE_H
 
 #include <vector>
+#include <thread>
+#include <chrono>
 #include "../camera/perspectivecamera.h"
 #include "../intersectables/intersectable.h"
 
@@ -37,10 +39,10 @@ class Scene
             unsigned int i, unsigned int j,
             Color& color){
         unsigned int array_pos = ( j * resolution_x_ + i ) * 4;
-        image[ array_pos] = color.r() * 255;
-        image[ array_pos + 1] = color.g() * 255;
-        image[ array_pos + 2] = color.b() * 255;
-        image[ array_pos + 3] = color.a() * 255;
+        image[ array_pos]     = static_cast<unsigned char>( color.r() * 255 );
+        image[ array_pos + 1] = static_cast<unsigned char>( color.g() * 255 );
+        image[ array_pos + 2] = static_cast<unsigned char>( color.b() * 255 );
+        image[ array_pos + 3] = static_cast<unsigned char>( color.a() * 255 );
     }
 
 public:
