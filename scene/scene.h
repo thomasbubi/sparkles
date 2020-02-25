@@ -44,6 +44,7 @@ class Scene
         image[ array_pos + 2] = static_cast<unsigned char>( color.b() * 255 );
         image[ array_pos + 3] = static_cast<unsigned char>( color.a() * 255 );
     }
+    void print_time(const std::chrono::duration<double>& render_time);
 
 public:
     Scene();

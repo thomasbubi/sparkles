@@ -11,6 +11,23 @@ Scene::Scene()
     max_recursion_depth_ = 3;
 }
 
+void Scene::print_time(const std::chrono::duration<double> &render_time)
+{
+    double render_time_in_seconds = render_time.count();
+
+    std::string output = "rendering took ";
+
+    if(render_time_in_seconds >= 60.0){
+        int minutes = static_cast<int>( render_time_in_seconds / 60 );
+        int seconds = static_cast<int>( fmod( render_time_in_seconds, 60.0 ) );
+        output += std::to_string(minutes) + " minutes and " + std::to_string(seconds) +  " seconds.";
+    } else {
+        output += std::to_string(render_time_in_seconds) + " seconds";
+    }
+
+    std::cout << output << std::endl;
+}
+
 Color Scene::color_along_ray(const Ray& ray, unsigned int i, unsigned int j, unsigned int recursion_depth, std::vector<unsigned char>& image)
 {
     //store a pointer to the object with lowest distance in front of camera
@@ -60,8 +77,7 @@ void Scene::render(std::vector<unsigned char>& image)
     }
 
     auto time_end = std::chrono::system_clock::now();
-    std::chrono::duration<double> render_time = time_end - time_begin;
-    std::cout << "rendering took " << render_time.count() << " seconds."  << std::endl;
+    print_time( time_end - time_begin );
 }
 
 }
