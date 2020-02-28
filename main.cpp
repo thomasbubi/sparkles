@@ -9,6 +9,7 @@
 #include "intersectables/sphere.h"
 #include "materials/shadelessmaterial.h"
 #include "materials/normalmaterial.h"
+#include "materials/mixmaterial.h"
 
 int main(int argc, char* argv[])
 {
@@ -71,7 +72,10 @@ int main(int argc, char* argv[])
     sparkles::Sphere* sphere = new sparkles::Sphere(
         sparkles::Vector3(-0.2,-2,0.5),
         0.5,
-        new sparkles::NormalMaterial()
+        new sparkles::MixMaterial(
+            new sparkles::ShadelessMaterial(sparkles::Color(1,1,1)),
+                    new sparkles::NormalMaterial(), 0.5
+        )
     );
 
     sparkles::Scene scene{};
