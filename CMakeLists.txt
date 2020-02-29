@@ -6,6 +6,7 @@ add_executable(
     "math/randomizer.cpp"
     "materials/shadelessmaterial.cpp"
     "materials/normalmaterial.cpp"
+    "materials/diffusematerial.cpp"
     "intersectables/plane.cpp"
     "intersectables/sphere.cpp"
     "external/lodepng.cpp"
