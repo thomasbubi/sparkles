@@ -16,6 +16,10 @@ public:
         material_b_ = mat_b;
         mix_value_ = value > 1.0 ? 1.0 : value < 0.0 ? 0 : value;
     }
+    inline virtual ~MixMaterial(){
+        delete material_a_;
+        delete material_b_;
+    }
     inline Color shade(
         const Ray& ray,
         const Vector3& intersection_point,
