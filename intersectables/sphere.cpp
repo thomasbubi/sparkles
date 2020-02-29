@@ -19,7 +19,7 @@ double Sphere::intersect(const Ray &ray)
 
     double discriminant = b*b - 4*a*c;
 
-    if(discriminant <= 0) return -1'000'000;
+    if(discriminant <= 0) return Intersectable::NO_INTERSECTION;
 
     return (-b - sqrt(discriminant) ) / 2*a;
 }
