@@ -9,6 +9,7 @@ add_executable(
     "materials/diffusematerial.cpp"
     "intersectables/plane.cpp"
     "intersectables/sphere.cpp"
+    "intersectables/rectangle.cpp"
     "external/lodepng.cpp"
     "camera/perspectivecamera.cpp"
     "scene/scene.cpp"
