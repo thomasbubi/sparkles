@@ -21,6 +21,7 @@ Some books that are very useful for writing a raytraycer and for learning math
 * Matt Pharr, Wenzel Jakob, and Greg Humphreys, _Physically Based Rendering, Third Edition: from Theory to Implementation_ ([available online](http://www.pbr-book.org/))
 * Steve Marschner, Peter Shirley, _Fundamentals of Computer Graphics, Third Edition_
 * Andrew Glassner, _An Introduction to Ray Tracing_ ([available online](http://www.realtimerendering.com/raytracing/An-Introduction-to-Ray-Tracing-The-Morgan-Kaufmann-Series-in-Computer-Graphics-.pdf))
+* Kevin Suffern, _Ray Tracing from the Ground Up_
 * Andrew S. Glassner, _Principles of Digital Image Synthesis_ ([available online](http://realtimerendering.com/Principles_of_Digital_Image_Synthesis_v1.0.1.pdf))
 
 ## other Resources
