@@ -14,8 +14,13 @@ Color DiffuseMaterial::shade(const Ray &ray,
                            unsigned int max_recursion_depth
                         ) const
 {
-    //return color_;
-    return tex_->get_value_at( intersection_point.x(), intersection_point.y() );
+
+    if(tex_){
+        return tex_->get_value_at( intersection_point.x(), intersection_point.y() );
+    } else {
+        return color_;
+    }
+
 }
 
 }

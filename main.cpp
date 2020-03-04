@@ -17,8 +17,8 @@
 int main(int argc, char* argv[])
 {
     bool print_dog = false;
-    unsigned long width = 6000;
-    unsigned long height = 4000;
+    unsigned long width = 600;
+    unsigned long height = 400;
     std::string filename = "output.png";
     bool use_alpha_background = false;
 
@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
     );
 
     sparkles::DiffuseMaterial* plane_mat  = new sparkles::DiffuseMaterial(sparkles::Color(1,1,0));
-    plane_mat->set_texture(new sparkles::CheckerboardTexture());
+    plane_mat->set_texture(new sparkles::CheckerboardTexture(1));
 
     sparkles::Plane* plane = new sparkles::Plane(
         sparkles::Vector3(0,0,0),
@@ -83,16 +83,16 @@ int main(int argc, char* argv[])
                     new sparkles::NormalMaterial(), 0.0
         )
     );*/
-    /*sparkles::Rectangle* rect = new sparkles::Rectangle(
+    sparkles::Rectangle* rect = new sparkles::Rectangle(
         sparkles::Vector3(0,-3,0.5),
         sparkles::Vector3(0,-1,0),
         1, 1,
-        new sparkles::DiffuseMaterial(sparkles::Color(1,1,1))
-    );*/
+        new sparkles::DiffuseMaterial(sparkles::Color(1,0,1))
+    );
 
     sparkles::Scene scene{};
     scene.add_object(plane);
-    //scene.add_object(rect);
+    scene.add_object(rect);
     scene.set_camera(camera);
     scene.set_resolution(final_width, final_height);
     if(use_alpha_background) scene.use_alpha_transparency();

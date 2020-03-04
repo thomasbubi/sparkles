@@ -9,7 +9,7 @@ namespace sparkles {
 class DiffuseMaterial : public Material
 {
     Color color_;
-    Texture* tex_;
+    Texture* tex_;//TODO use smart pointers here
 public:
     DiffuseMaterial(const Color& color);
     Color shade(
