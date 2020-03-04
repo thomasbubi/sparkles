@@ -12,12 +12,13 @@
 #include "materials/normalmaterial.h"
 #include "materials/mixmaterial.h"
 #include "materials/diffusematerial.h"
+#include "textures/checkerboardtexture.h"
 
 int main(int argc, char* argv[])
 {
     bool print_dog = false;
-    unsigned long width = 600;
-    unsigned long height = 400;
+    unsigned long width = 6000;
+    unsigned long height = 4000;
     std::string filename = "output.png";
     bool use_alpha_background = false;
 
@@ -64,11 +65,14 @@ int main(int argc, char* argv[])
         35
     );
 
+    sparkles::DiffuseMaterial* plane_mat  = new sparkles::DiffuseMaterial(sparkles::Color(1,1,0));
+    plane_mat->set_texture(new sparkles::CheckerboardTexture());
+
     sparkles::Plane* plane = new sparkles::Plane(
         sparkles::Vector3(0,0,0),
         sparkles::Vector3(0,0,1),
         //new sparkles::ShadelessMaterial( sparkles::Color(0.4,0.4,0.4) )
-        new sparkles::NormalMaterial()
+        plane_mat
     );
 
     /*sparkles::Sphere* sphere = new sparkles::Sphere(
@@ -79,27 +83,20 @@ int main(int argc, char* argv[])
                     new sparkles::NormalMaterial(), 0.0
         )
     );*/
-    sparkles::Rectangle* rect = new sparkles::Rectangle(
+    /*sparkles::Rectangle* rect = new sparkles::Rectangle(
         sparkles::Vector3(0,-3,0.5),
         sparkles::Vector3(0,-1,0),
         1, 1,
         new sparkles::DiffuseMaterial(sparkles::Color(1,1,1))
-    );
+    );*/
 
     sparkles::Scene scene{};
     scene.add_object(plane);
-    scene.add_object(rect);
+    //scene.add_object(rect);
     scene.set_camera(camera);
     scene.set_resolution(final_width, final_height);
     if(use_alpha_background) scene.use_alpha_transparency();
     scene.render(image);
-
-    //TEST
-    //
-    /*sparkles::Vector3* a = new sparkles::Vector3(1,2,3);
-    sparkles::Vector3* b = new sparkles::Vector3(-7,8,9);
-    //sparkles::Vector3 c = *a + *b;
-    std::cout << sparkles::Vector3::cross(*a,*b) << std::endl;*/
 
     //conversion from string (command-liune argumewnts of width or height) yields an unsigned long
     //lodepng::encode expects a unsigned int though

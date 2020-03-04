@@ -4,6 +4,7 @@ project(sparkles)
 add_executable(
     ${PROJECT_NAME}
     "math/randomizer.cpp"
+    "textures/checkerboardtexture.cpp"
     "materials/shadelessmaterial.cpp"
     "materials/normalmaterial.cpp"
     "materials/diffusematerial.cpp"

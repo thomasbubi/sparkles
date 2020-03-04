@@ -14,6 +14,7 @@ PerspectiveCamera::PerspectiveCamera(const Vector3& pos, const Vector3& dir, dou
 
     position_ = pos;
     direction_ = dir;
+    //todo: camera's direction now cannot be (0,0,1) - camera cannot be rotated aroud the direction vector
     up_ = Vector3(0,0,1);
     focal_length_ = focal_length_in_mm / 1000;//converting from mm (unit used in photography) to meters
 
