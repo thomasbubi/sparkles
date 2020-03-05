@@ -10,6 +10,7 @@ Scene::Scene()
     t_max_ = 1'000'000.0;
     t_min_ = 0.05;
     max_recursion_depth_ = 3;
+    background_color_ = Color(0.1,0.1,0.1);
 }
 
 void Scene::print_time(const std::chrono::duration<double> &render_time)
@@ -51,7 +52,17 @@ Color Scene::color_along_ray(const Ray& ray, unsigned int recursion_depth)
     if( t <= t_min_ || t >= t_max_ ){
         //if no object was hit by ray, fill background with fully transparent pixels
         //fill_pixel( image, i, j, 0, 0, 0, use_alpha_transparency_ ? 0 : 255 );
-        return Color(0,0,0, use_alpha_transparency_ ? 0 : 1);
+        if( use_alpha_transparency_ ){
+            Color bg = Color(
+                        background_color_.r(),
+                        background_color_.g(),
+                        background_color_.b(),
+                        recursion_depth == 0 ? 0 : 1
+                    );
+            return bg;
+        } else {
+            return background_color_;
+        }
     }
 
     //change ray::at so copying view ray is not necessary

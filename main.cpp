@@ -76,7 +76,7 @@ int main(int argc, char* argv[])
         plane_mat
     );
 
-    sparkles::GlossyMaterial* sphere_mat = new sparkles::GlossyMaterial(sparkles::Color(1,1,1),0);
+    sparkles::GlossyMaterial* sphere_mat = new sparkles::GlossyMaterial(sparkles::Color(0,1,1),0);
 
     sparkles::Sphere* sphere = new sparkles::Sphere(
         sparkles::Vector3(-0.7,-2,0.5),
@@ -101,6 +101,7 @@ int main(int argc, char* argv[])
     scene.add_object(sphere2);
     scene.set_camera(camera);
     scene.set_resolution(final_width, final_height);
+
     if(use_alpha_background) scene.use_alpha_transparency();
     scene.render(image);
 

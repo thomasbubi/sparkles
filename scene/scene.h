@@ -21,6 +21,7 @@ class Scene
     double t_max_;//far clipping plane
     double t_min_;//near clipping plane
     unsigned int max_recursion_depth_;
+    Color background_color_;
 
     inline void fill_pixel(
             std::vector<unsigned char>& image,
@@ -61,6 +62,7 @@ public:
     inline void set_recursion_depth( unsigned int number_of_recursions){
         max_recursion_depth_ = number_of_recursions;
     }
+    inline void set_background_color(const Color& bg_color){ background_color_ = bg_color; }
     inline void use_alpha_transparency(){ use_alpha_transparency_ = true; }
 };
 
