@@ -8,6 +8,7 @@ add_executable(
     "materials/shadelessmaterial.cpp"
     "materials/normalmaterial.cpp"
     "materials/diffusematerial.cpp"
+    "materials/glossymaterial.cpp"
     "intersectables/plane.cpp"
     "intersectables/sphere.cpp"
     "intersectables/rectangle.cpp"

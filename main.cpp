@@ -12,6 +12,7 @@
 #include "materials/normalmaterial.h"
 #include "materials/mixmaterial.h"
 #include "materials/diffusematerial.h"
+#include "materials/glossymaterial.h"
 #include "textures/checkerboardtexture.h"
 
 int main(int argc, char* argv[])
@@ -75,24 +76,21 @@ int main(int argc, char* argv[])
         plane_mat
     );
 
-    /*sparkles::Sphere* sphere = new sparkles::Sphere(
+    sparkles::Sphere* sphere = new sparkles::Sphere(
         sparkles::Vector3(-0.2,-2,0.5),
         0.5,
-        new sparkles::MixMaterial(
-            new sparkles::DiffuseMaterial(sparkles::Color(1,1,1)),
-                    new sparkles::NormalMaterial(), 0.0
-        )
-    );*/
-    sparkles::Rectangle* rect = new sparkles::Rectangle(
+        new sparkles::GlossyMaterial(sparkles::Color(1,1,1),0)
+    );
+    /*sparkles::Rectangle* rect = new sparkles::Rectangle(
         sparkles::Vector3(0,-3,0.5),
         sparkles::Vector3(0,-1,0),
         1, 1,
         new sparkles::DiffuseMaterial(sparkles::Color(1,0,1))
-    );
+    );*/
 
     sparkles::Scene scene{};
     scene.add_object(plane);
-    scene.add_object(rect);
+    scene.add_object(sphere);
     scene.set_camera(camera);
     scene.set_resolution(final_width, final_height);
     if(use_alpha_background) scene.use_alpha_transparency();
