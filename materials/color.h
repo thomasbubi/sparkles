@@ -43,7 +43,7 @@ public:
 
     inline Color operator+ (const Color& col){
         Color c = Color( r_ + col.r_, g_ + col.g_, b_ + col.b_, a_ + col.a_);
-        c.clamp();
+        //c.clamp();
         return c;
     }
 
@@ -52,13 +52,13 @@ public:
         g_ += col.g_;
         b_ += col.b_;
         a_ += col.a_;
-        this->clamp();
+        //this->clamp();
         return *this;
     }
 
     inline Color operator- (const Color& col){
         Color c = Color( r_ - col.r_, g_ - col.g_, b_ - col.b_, a_ - col.a_);
-        c.clamp();
+        //c.clamp();
         return c;
     }
 
@@ -67,7 +67,7 @@ public:
         g_ -= col.g_;
         b_ -= col.b_;
         a_ -= col.a_;
-        this->clamp();
+        //this->clamp();
         return *this;
     }
 
@@ -86,7 +86,7 @@ public:
 
     inline Color operator* (const double& scalar){
         Color c = Color( r_ * scalar, g_ * scalar, b_ * scalar, a_ * scalar);
-        c.clamp();
+        //c.clamp();
         return c;
     }
 
@@ -95,7 +95,7 @@ public:
         g_ *= scalar;
         b_ *= scalar;
         a_ *= scalar;
-        this->clamp();
+        //this->clamp();
         return *this;
     }
 
