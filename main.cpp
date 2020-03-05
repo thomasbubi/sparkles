@@ -76,7 +76,7 @@ int main(int argc, char* argv[])
         plane_mat
     );
 
-    sparkles::GlossyMaterial* sphere_mat = new sparkles::GlossyMaterial(sparkles::Color(0,1,1),0);
+    sparkles::GlossyMaterial* sphere_mat = new sparkles::GlossyMaterial(sparkles::Color(0,1,1),0.1);
 
     sparkles::Sphere* sphere = new sparkles::Sphere(
         sparkles::Vector3(-0.7,-2,0.5),
