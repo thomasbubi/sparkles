@@ -8,7 +8,7 @@ GlossyMaterial::GlossyMaterial(const Color &color, double roughness)
     roughness_ = roughness;
 }
 
-Color GlossyMaterial::shade(const Ray &ray, const Vector3 &intersection_point, const Vector3 &normal, unsigned int current_recursion_depth, unsigned int max_recursion_depth) const
+Color GlossyMaterial::shade(const ShaderInput& shader_input) const
 {
     return Color(0,1,1);
 }

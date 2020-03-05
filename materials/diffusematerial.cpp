@@ -7,16 +7,11 @@ DiffuseMaterial::DiffuseMaterial(const Color& color)
     color_ = color;
 }
 
-Color DiffuseMaterial::shade(const Ray &ray,
-                           const Vector3 &intersection_point,
-                           const Vector3 &normal,
-                           unsigned int recursion_depth,
-                           unsigned int max_recursion_depth
-                        ) const
+Color DiffuseMaterial::shade( const ShaderInput& shader_input ) const
 {
 
     if(tex_){
-        return tex_->get_value_at( intersection_point.x(), intersection_point.y() );
+        return tex_->get_value_at( shader_input.intersection_point.x(), shader_input.intersection_point.y() );
     } else {
         return color_;
     }

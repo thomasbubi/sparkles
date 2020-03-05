@@ -56,7 +56,9 @@ Color Scene::color_along_ray(const Ray& ray, unsigned int i, unsigned int j, uns
     Vector3 intersection_point = temp_ray.at(t);
     Vector3 normal = nearest_object->get_normal_at_t(ray, t);
 
-    return nearest_object->material()->shade(ray, intersection_point, normal, recursion_depth, max_recursion_depth_);
+    struct ShaderInput args{ray, intersection_point, normal, recursion_depth, max_recursion_depth_};
+
+    return nearest_object->material()->shade(args);
 }
 
 void Scene::render(std::vector<unsigned char>& image)

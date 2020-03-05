@@ -12,13 +12,7 @@ class DiffuseMaterial : public Material
     Texture* tex_;//TODO use smart pointers here
 public:
     DiffuseMaterial(const Color& color);
-    Color shade(
-        const Ray& ray,
-        const Vector3& intersection_point,
-        const Vector3& normal,
-        unsigned int current_recursion_depth,
-        unsigned int max_recursion_depth
-    ) const;
+    Color shade( const ShaderInput& shader_input ) const;
     inline void set_texture(Texture* tex){ tex_ = tex; }
 };
 

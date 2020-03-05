@@ -9,13 +9,7 @@ class NormalMaterial : public Material
 {
 public:
     NormalMaterial();
-    Color shade(
-        const Ray& ray,
-        const Vector3& intersection_point,
-        const Vector3& normal,
-        unsigned int current_recursion_depth,
-        unsigned int max_recursion_depth
-    ) const;
+    Color shade( const ShaderInput& shader_input ) const;
 };
 
 }

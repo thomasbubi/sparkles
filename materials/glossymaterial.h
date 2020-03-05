@@ -11,13 +11,7 @@ class GlossyMaterial : public Material
     double roughness_;
 public:
     GlossyMaterial(const Color& color, double roughness);
-    Color shade(
-        const Ray& ray,
-        const Vector3& intersection_point,
-        const Vector3& normal,
-        unsigned int current_recursion_depth,
-        unsigned int max_recursion_depth
-    ) const;
+    Color shade( const ShaderInput& shader_input ) const;
 };
 
 }

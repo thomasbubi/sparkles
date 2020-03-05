@@ -28,21 +28,15 @@ public:
         delete material_a_;
         delete material_b_;
     }
-    inline Color shade(
-        const Ray& ray,
-        const Vector3& intersection_point,
-        const Vector3& normal,
-        unsigned int current_recursion_depth,
-        unsigned int max_recursion_depth
-    ) const {
+    inline Color shade( const ShaderInput& shader_input ) const {
         double pixel_value = mix_value_;
         if(mask_){
-            Color col = mask_->get_value_at(intersection_point.x(), intersection_point.y());
+            Color col = mask_->get_value_at(shader_input.intersection_point.x(), shader_input.intersection_point.y());
             pixel_value = col.r() * 1/3 + col.g() * 1/3 + col.b() * 1/3;
             //todo use rgb_to_bw_
         }
-        return  material_a_->shade(ray, intersection_point, normal, current_recursion_depth, max_recursion_depth) * (1-pixel_value) +
-                material_b_->shade(ray, intersection_point, normal, current_recursion_depth, max_recursion_depth) * pixel_value;
+        return  material_a_->shade(shader_input) * (1-pixel_value) +
+                material_b_->shade(shader_input) * pixel_value;
 
     }
     inline void set_mask(Texture* mask){
