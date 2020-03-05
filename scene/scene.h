@@ -2,7 +2,6 @@
 #define SCENE_H
 
 #include <vector>
-#include <thread>
 #include <chrono>
 #include "../camera/perspectivecamera.h"
 #include "../intersectables/intersectable.h"
@@ -51,7 +50,7 @@ public:
     inline void add_object(Intersectable* obj){ objects_.push_back(obj); }
     //this function allows for recursive ray tracing, e.g. for reflection & refraction
     //using recursion instead of iteration for this yields in cleaner code
-    Color color_along_ray(const Ray& ray, unsigned int i, unsigned int j, unsigned int recursion_depth, std::vector<unsigned char>& image);
+    Color color_along_ray(const Ray& ray, unsigned int recursion_depth);
     void render(std::vector<unsigned char>& image);
     inline void set_resolution(unsigned int res_x, unsigned int res_y){
         resolution_x_ = res_x;

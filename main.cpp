@@ -61,8 +61,8 @@ int main(int argc, char* argv[])
     std::vector<unsigned char> image(final_width * final_height * 4, 255);
 
     sparkles::PerspectiveCamera camera(
-        sparkles::Vector3(0,0.5,0.5),
-        sparkles::Vector3(0,-1,0),
+        sparkles::Vector3(0,0.5,0.75),
+        sparkles::Vector3(0,-1,-0.1),
         35
     );
 
@@ -76,10 +76,17 @@ int main(int argc, char* argv[])
         plane_mat
     );
 
+    sparkles::GlossyMaterial* sphere_mat = new sparkles::GlossyMaterial(sparkles::Color(1,1,1),0);
+
     sparkles::Sphere* sphere = new sparkles::Sphere(
-        sparkles::Vector3(-0.2,-2,0.5),
+        sparkles::Vector3(-0.7,-2,0.5),
         0.5,
-        new sparkles::GlossyMaterial(sparkles::Color(1,1,1),0)
+        sphere_mat
+    );
+    sparkles::Sphere* sphere2 = new sparkles::Sphere(
+        sparkles::Vector3(0.7,-2,0.5),
+        0.5,
+        sphere_mat
     );
     /*sparkles::Rectangle* rect = new sparkles::Rectangle(
         sparkles::Vector3(0,-3,0.5),
@@ -91,6 +98,7 @@ int main(int argc, char* argv[])
     sparkles::Scene scene{};
     scene.add_object(plane);
     scene.add_object(sphere);
+    scene.add_object(sphere2);
     scene.set_camera(camera);
     scene.set_resolution(final_width, final_height);
     if(use_alpha_background) scene.use_alpha_transparency();

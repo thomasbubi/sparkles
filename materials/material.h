@@ -6,7 +6,11 @@
 
 namespace sparkles {
 
+//forward declaring Scene here to avoid circular header dependency
+class Scene;
+
 struct ShaderInput {
+    Scene* scene;
     const Ray& ray;
     Vector3& intersection_point;
     Vector3& normal;

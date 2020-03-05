@@ -1,4 +1,5 @@
 #include "scene.h"
+#include <thread>
 
 namespace sparkles {
 
@@ -28,8 +29,10 @@ void Scene::print_time(const std::chrono::duration<double> &render_time)
     std::cout << output << std::endl;
 }
 
-Color Scene::color_along_ray(const Ray& ray, unsigned int i, unsigned int j, unsigned int recursion_depth, std::vector<unsigned char>& image)
+Color Scene::color_along_ray(const Ray& ray, unsigned int recursion_depth)
 {
+    if(recursion_depth > max_recursion_depth_) { return Color(0,0,0); }
+
     //store a pointer to the object with lowest distance in front of camera
     double t = t_max_;
     Intersectable* nearest_object;
@@ -56,7 +59,7 @@ Color Scene::color_along_ray(const Ray& ray, unsigned int i, unsigned int j, uns
     Vector3 intersection_point = temp_ray.at(t);
     Vector3 normal = nearest_object->get_normal_at_t(ray, t);
 
-    struct ShaderInput args{ray, intersection_point, normal, recursion_depth, max_recursion_depth_};
+    struct ShaderInput args{this, ray, intersection_point, normal, recursion_depth, max_recursion_depth_};
 
     return nearest_object->material()->shade(args);
 }
@@ -72,7 +75,7 @@ void Scene::render(std::vector<unsigned char>& image)
         for(unsigned int i=0; i< resolution_x_; i++){
 
             const Ray view_ray = camera_.create_view_ray(i, j);
-            Color c = color_along_ray(view_ray, i,j,0,image);
+            Color c = color_along_ray(view_ray, 0);
             fill_pixel(image,i,j,c);
 
         }
