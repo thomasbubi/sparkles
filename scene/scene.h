@@ -21,6 +21,7 @@ class Scene
     double t_max_;//far clipping plane
     double t_min_;//near clipping plane
     unsigned int max_recursion_depth_;
+    unsigned int spp_glossy_;
     Color background_color_;
 
     inline void fill_pixel(
@@ -53,6 +54,9 @@ public:
     //using recursion instead of iteration for this yields in cleaner code
     Color color_along_ray(const Ray& ray, unsigned int recursion_depth);
     void render(std::vector<unsigned char>& image);
+
+    inline unsigned int get_spp_glossy(){ return spp_glossy_; }
+
     inline void set_resolution(unsigned int res_x, unsigned int res_y){
         resolution_x_ = res_x;
         resolution_y_ = res_y;

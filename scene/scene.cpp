@@ -11,6 +11,7 @@ Scene::Scene()
     t_min_ = 0.05;
     max_recursion_depth_ = 3;
     background_color_ = Color(0.1,0.1,0.1);
+    spp_glossy_ = 10;
 }
 
 void Scene::print_time(const std::chrono::duration<double> &render_time)
