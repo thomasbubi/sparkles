@@ -3,6 +3,7 @@
 
 #include "../math/vector3.h"
 #include "../math/ray.h"
+#include "../textures/uv.h"
 
 namespace sparkles {
 
@@ -26,7 +27,7 @@ class PerspectiveCamera
 public:
     inline PerspectiveCamera(){}
     PerspectiveCamera(const Vector3& pos, const Vector3& dir, double focal_length_in_mm);
-    Ray create_view_ray(unsigned int i, unsigned int j);
+    Ray create_view_ray(unsigned int i, unsigned int j, UV& uv);
 
     inline void setPosition(const Vector3 &position){ position_ = position; }
 

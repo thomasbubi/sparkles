@@ -1,5 +1,6 @@
 #include "scene.h"
 #include <thread>
+#include "../math/randomizer.h"
 
 namespace sparkles {
 
@@ -12,6 +13,7 @@ Scene::Scene()
     max_recursion_depth_ = 3;
     background_color_ = Color(0.1,0.1,0.1);
     spp_glossy_ = 10;
+    use_aa_ = true;
 }
 
 void Scene::print_time(const std::chrono::duration<double> &render_time)
@@ -29,6 +31,16 @@ void Scene::print_time(const std::chrono::duration<double> &render_time)
     }
 
     std::cout << output << std::endl;
+}
+
+std::array<UV, 4> Scene::jitter_aa_samples() const
+{
+    UV top_left = UV( 0.5 * random_between_0_and_1(), 0.5 * random_between_0_and_1() );
+    UV top_right = UV( 0.5 * random_between_0_and_1() + 0.5, 0.5 * random_between_0_and_1() );
+    UV bottom_left = UV( 0.5 * random_between_0_and_1(), 0.5 * random_between_0_and_1() + 0.5 );
+    UV bottom_right = UV( 0.5 * random_between_0_and_1() + 0.5, 0.5 * random_between_0_and_1() + 0.5 );
+
+    return {top_left, top_right, bottom_left, bottom_right};
 }
 
 Color Scene::color_along_ray(const Ray& ray, unsigned int recursion_depth)
@@ -86,9 +98,23 @@ void Scene::render(std::vector<unsigned char>& image)
     for(unsigned int j=0; j<resolution_y_; j++){
         for(unsigned int i=0; i< resolution_x_; i++){
 
-            const Ray view_ray = camera_.create_view_ray(i, j);
-            Color c = color_along_ray(view_ray, 0);
-            fill_pixel(image,i,j,c);
+            if(use_aa_){
+                std::array<UV,4> uvs = this->jitter_aa_samples();
+                Color pixel_color = Color(0,0,0);
+                for(unsigned int aa_samples=0; aa_samples<4;aa_samples++){
+                    const Ray view_ray = camera_.create_view_ray(i, j, uvs[aa_samples]);
+                    pixel_color += color_along_ray(view_ray, 0);
+                }
+                pixel_color *= 0.25;
+                pixel_color.set_a(1);
+                fill_pixel( image, i, j, pixel_color );
+            } else {
+                UV uv = UV(0.5,0.5);
+                const Ray view_ray = camera_.create_view_ray(i, j, uv);
+                Color c = color_along_ray(view_ray, 0);
+                fill_pixel( image, i, j, c );
+            }
+
 
         }
     }

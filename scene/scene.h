@@ -2,6 +2,7 @@
 #define SCENE_H
 
 #include <vector>
+#include <array>
 #include <chrono>
 #include "../camera/perspectivecamera.h"
 #include "../intersectables/intersectable.h"
@@ -18,6 +19,7 @@ class Scene
     unsigned int resolution_x_;
     unsigned int resolution_y_;
     bool use_alpha_transparency_;
+    bool use_aa_;
     double t_max_;//far clipping plane
     double t_min_;//near clipping plane
     unsigned int max_recursion_depth_;
@@ -46,6 +48,7 @@ class Scene
         image[ array_pos + 3] = static_cast<unsigned char>( color.a() * 255 );
     }
     void print_time(const std::chrono::duration<double>& render_time);
+    std::array<UV,4> jitter_aa_samples() const;
 
 public:
     Scene();
@@ -56,6 +59,8 @@ public:
     void render(std::vector<unsigned char>& image);
 
     inline unsigned int get_spp_glossy(){ return spp_glossy_; }
+
+    inline void no_aa(){ use_aa_ = false; }
 
     inline void set_resolution(unsigned int res_x, unsigned int res_y){
         resolution_x_ = res_x;

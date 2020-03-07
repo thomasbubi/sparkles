@@ -30,7 +30,7 @@ PerspectiveCamera::PerspectiveCamera(const Vector3& pos, const Vector3& dir, dou
 
 }
 
-Ray PerspectiveCamera::create_view_ray(unsigned int i, unsigned int j)
+Ray PerspectiveCamera::create_view_ray(unsigned int i, unsigned int j, UV& uv)
 {
 
     // (u,v) are the coordinates in the image plane
@@ -38,8 +38,8 @@ Ray PerspectiveCamera::create_view_ray(unsigned int i, unsigned int j)
     double l = -r;
     double b = sensor_height_ / 2;
     double t = -b;
-    double u = l + (r - l) * (i + 0.5) / resolution_x_;
-    double v = b + (t - b) * (j + 0.5) / resolution_y_;
+    double u = l + (r - l) * (i + uv.u()) / resolution_x_;
+    double v = b + (t - b) * (j + uv.v()) / resolution_y_;
 
     Vector3 view_ray_direction = axis_w_ * -focal_length_ + axis_u_ * u + axis_v_ * v;
     view_ray_direction.normalize();
