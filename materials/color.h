@@ -34,6 +34,7 @@ public:
     inline double g(){ return g_; }
     inline double b(){ return b_; }
     inline double a(){ return a_; }
+    inline void set_a(double a){ a_ = a; }
     inline void clamp(){
         r_ = r_ > 1 ? 1 : r_ < 0 ? 0 : r_;
         g_ = g_ > 1 ? 1 : g_ < 0 ? 0 : g_;
