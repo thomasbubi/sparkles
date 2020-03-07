@@ -35,8 +35,8 @@ Color GlossyMaterial::shade(const ShaderInput& shader_input) const
         }
 
         pixel_color *= 1 / static_cast<double>( shader_input.scene->get_spp_glossy() );
-
-        return self_color * Color(pixel_color.r(), pixel_color.g(), pixel_color.b());
+        pixel_color.set_a(1);
+        return self_color * pixel_color;
 
     } else {
 
