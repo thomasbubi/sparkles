@@ -25,4 +25,9 @@ Vector3 random_vector_in_unit_disk()
     return Vector3(radius * cos(alpha), radius * sin(alpha), 0);
 }
 
+double random_between_0_and_1()
+{
+    return uni( mersenne_twister );
+}
+
 }
