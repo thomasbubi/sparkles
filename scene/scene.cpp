@@ -61,8 +61,9 @@ Color Scene::color_along_ray(const Ray& ray, unsigned int recursion_depth)
         }
     }
 
-
-    if( t <= t_min_ || t >= t_max_ ){
+    //use t_min_ (the near clipping plane) only when camera ray is traced through the scene,
+    //not when reflected rays are traced
+    if( t <= (recursion_depth > 0 ? 0.000001 : t_min_) || t >= t_max_ ){
         //if no object was hit by ray, fill background with fully transparent pixels
         //fill_pixel( image, i, j, 0, 0, 0, use_alpha_transparency_ ? 0 : 255 );
         if( use_alpha_transparency_ ){
