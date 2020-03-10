@@ -5,7 +5,8 @@ namespace sparkles {
 Rectangle::Rectangle(const Vector3& position, const Vector3& normal, double width, double height, Material* material) : Intersectable (material)
 {
     position_ = position;
-    normal_ = normal;
+    normal_ = Vector3(normal);
+    normal_.normalize();
     width_ = width;
     height_ = height;
 
