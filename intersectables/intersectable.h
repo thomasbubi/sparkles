@@ -15,7 +15,7 @@ public:
     inline Intersectable(Material* material){ material_ = material; }
     inline ~Intersectable(){ delete material_; }
     virtual double intersect(const Ray& ray) = 0;
-    virtual std::string get_class_name() const = 0;
+    virtual inline std::string get_class_name() const {return ""; };
     virtual Vector3 get_normal_at_t( const Ray& ray, double t) = 0;
     inline Material* material(){ return material_; }
     constexpr static double NO_INTERSECTION = -1'000'000'000'000;
