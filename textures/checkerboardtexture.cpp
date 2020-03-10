@@ -25,8 +25,8 @@ CheckerboardTexture::CheckerboardTexture(const Color &a, const Color &b, double 
 
 Color CheckerboardTexture::get_value_at(double u, double v) const
 {
-    int uu = (1 / checker_size_) * (u - 1'000'000);
-    int vv = (1 / checker_size_) * v;
+    int uu = static_cast<int>( (1 / checker_size_) * (u - 1'000'000) );
+    int vv = static_cast<int>( (1 / checker_size_) * (v - 1'000'000) );
 
     if(uu < 0) { uu *= -1; }
     if(vv < 0) { vv--; vv *= -1; }
