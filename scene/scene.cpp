@@ -43,7 +43,7 @@ std::array<UV, 4> Scene::jitter_aa_samples() const
     return {top_left, top_right, bottom_left, bottom_right};
 }
 
-Color Scene::color_along_ray(const Ray& ray, unsigned int recursion_depth)
+Color Scene::color_along_ray(const Ray& ray, unsigned int recursion_depth, unsigned int i, unsigned int j)
 {
     if(recursion_depth > max_recursion_depth_) { return Color(0,0,0); }
 
@@ -84,7 +84,7 @@ Color Scene::color_along_ray(const Ray& ray, unsigned int recursion_depth)
     Vector3 intersection_point = temp_ray.at(t);
     Vector3 normal = nearest_object->get_normal_at_t(ray, t);
 
-    struct ShaderInput args{this, ray, intersection_point, normal, recursion_depth, max_recursion_depth_};
+    struct ShaderInput args{this, ray, intersection_point, normal, recursion_depth, max_recursion_depth_, i,j};
 
     return nearest_object->material()->shade(args);
 }
@@ -104,7 +104,7 @@ void Scene::render(std::vector<unsigned char>& image)
                 Color pixel_color = Color(0,0,0);
                 for(unsigned int aa_samples=0; aa_samples<4;aa_samples++){
                     const Ray view_ray = camera_.create_view_ray(i, j, uvs[aa_samples]);
-                    pixel_color += color_along_ray(view_ray, 0);
+                    pixel_color += color_along_ray(view_ray, 0, i, j);
                 }
                 pixel_color *= 0.25;
                 pixel_color.set_a(1);
@@ -112,7 +112,7 @@ void Scene::render(std::vector<unsigned char>& image)
             } else {
                 UV uv = UV(0.5,0.5);
                 const Ray view_ray = camera_.create_view_ray(i, j, uv);
-                Color c = color_along_ray(view_ray, 0);
+                Color c = color_along_ray(view_ray, 0,i,j);
                 fill_pixel( image, i, j, c );
             }
 

@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
     sparkles::PerspectiveCamera camera(
         sparkles::Vector3(0,0.5,0.75),
-        sparkles::Vector3(0,-1,-0.1),
+        sparkles::Vector3(0,-1,0),
         35
     );
 
@@ -76,7 +76,7 @@ int main(int argc, char* argv[])
         plane_mat
     );
 
-    sparkles::GlossyMaterial* sphere_mat = new sparkles::GlossyMaterial(sparkles::Color(0,1,1),0.1);
+    sparkles::GlossyMaterial* sphere_mat = new sparkles::GlossyMaterial(sparkles::Color(0,1,1),0);
 
     sparkles::Sphere* sphere = new sparkles::Sphere(
         sparkles::Vector3(-0.7,-2,0.5),
@@ -84,23 +84,25 @@ int main(int argc, char* argv[])
         sphere_mat
     );
     sparkles::Sphere* sphere2 = new sparkles::Sphere(
-        sparkles::Vector3(0.7,-2,0.5),
+        sparkles::Vector3(0.7,2,0.5),
         0.5,
         sphere_mat
     );
-    /*sparkles::Rectangle* rect = new sparkles::Rectangle(
-        sparkles::Vector3(0,-3,0.5),
-        sparkles::Vector3(0,-1,0),
+    sparkles::Rectangle* rect = new sparkles::Rectangle(
+        sparkles::Vector3(0,-3.5,0.5),
+        sparkles::Vector3(0,-1,0.1),
         1, 1,
-        new sparkles::DiffuseMaterial(sparkles::Color(1,0,1))
-    );*/
+        sphere_mat
+    );
 
     sparkles::Scene scene{};
     scene.add_object(plane);
     scene.add_object(sphere);
-    scene.add_object(sphere2);
+    scene.add_object(rect);
     scene.set_camera(camera);
     scene.set_resolution(final_width, final_height);
+    scene.set_background_color(sparkles::Color(0.8,0.8,0.8));
+    scene.no_aa();
 
     if(use_alpha_background) scene.use_alpha_transparency();
     scene.render(image);

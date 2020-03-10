@@ -30,8 +30,14 @@ Color GlossyMaterial::shade(const ShaderInput& shader_input) const
         for(unsigned int i=0; i<shader_input.scene->get_spp_glossy();i++){
             Vector3 randomized_direction = Vector3(reflected_direction);
             randomized_direction += random_vector_on_unit_sphere() * roughness_;
-            Ray reflected = Ray(shader_input.intersection_point, randomized_direction);
-            pixel_color +=  shader_input.scene->color_along_ray(reflected, shader_input.current_recursion_depth +1 );
+            //start ray with little offset to avoid that ray intersects the object whose shade
+            //function is currently running
+            Ray reflected = Ray(
+                shader_input.intersection_point + reflected_direction * 0.001,
+                randomized_direction
+            );
+            pixel_color +=  shader_input.scene->color_along_ray(reflected, shader_input.current_recursion_depth +1,
+                                                                shader_input.pix_i, shader_input.pix_j );
         }
 
         pixel_color *= 1 / static_cast<double>( shader_input.scene->get_spp_glossy() );
@@ -40,8 +46,15 @@ Color GlossyMaterial::shade(const ShaderInput& shader_input) const
 
     } else {
 
-        Ray reflected = Ray(shader_input.intersection_point, reflected_direction);
-        return self_color * shader_input.scene->color_along_ray(reflected, shader_input.current_recursion_depth +1 );
+        Ray reflected = Ray(
+            //again, start ray with little offset to avoid that ray intersects the object whose shade
+            //function is currently running
+            shader_input.intersection_point + reflected_direction * 0.001,
+            reflected_direction
+        );
+
+        return self_color * shader_input.scene->color_along_ray(reflected, shader_input.current_recursion_depth +1,
+                                                                shader_input.pix_i, shader_input.pix_j );
 
     }
 

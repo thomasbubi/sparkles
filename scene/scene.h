@@ -55,7 +55,7 @@ public:
     inline void add_object(Intersectable* obj){ objects_.push_back(obj); }
     //this function allows for recursive ray tracing, e.g. for reflection & refraction
     //using recursion instead of iteration for this yields in cleaner code
-    Color color_along_ray(const Ray& ray, unsigned int recursion_depth);
+    Color color_along_ray(const Ray& ray, unsigned int recursion_depth, unsigned int i, unsigned int j);
     void render(std::vector<unsigned char>& image);
 
     inline unsigned int get_spp_glossy(){ return spp_glossy_; }
