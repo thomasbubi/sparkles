@@ -25,7 +25,7 @@ Some books that are very useful for writing a raytraycer and for learning math:
 * Andrew S. Glassner, _Principles of Digital Image Synthesis_ ([available online](http://realtimerendering.com/Principles_of_Digital_Image_Synthesis_v1.0.1.pdf))
 
 ## Papers
-Pixar provides a huge number of Papers [online](http://graphics.pixar.com/library/:
+Pixar provides a huge number of Papers [online](http://graphics.pixar.com/library/):
 * Per Christensen et al., _RenderMan: An Advanced Path Tracing Architecture for MovieRendering_ ([available online](http://graphics.pixar.com/library/RendermanTog2018/paper.pdf))
 * Per Christensen, Wojciech Jarosz, _The Path to Path-Traced Movies_ ([available online](http://graphics.pixar.com/library/PathTracedMovies/paper.pdf))
 * Ryusuke Villemin et al., _Art and Technology at Pixar, from Toy Story to today_ ([available online](http://graphics.pixar.com/library/SigAsia2015/paper.pdf))
