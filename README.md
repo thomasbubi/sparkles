@@ -13,7 +13,7 @@ All command-line arguments are optional, sparkles provides default values
 * `--dog` | instead of _meow_, sparkles does _woof,woof_
 
 ## Books
-Some books that are very useful for writing a raytraycer and for learning math
+Some books that are very useful for writing a raytraycer and for learning math:
 * Peter Shirley, _Ray Tracing in One Weekend_ ([available online](https://raytracing.github.io/books/RayTracingInOneWeekend.html))
 * Peter Shirley, _Ray Tracing: the Next Week_ ([available online](https://raytracing.github.io/books/RayTracingTheNextWeek.html))
 * Peter Shirley, _Ray Tracing: The Rest Of Your Life_ ([available online](https://raytracing.github.io/books/RayTracingTheRestOfYourLife.html))
@@ -25,10 +25,11 @@ Some books that are very useful for writing a raytraycer and for learning math
 * Andrew S. Glassner, _Principles of Digital Image Synthesis_ ([available online](http://realtimerendering.com/Principles_of_Digital_Image_Synthesis_v1.0.1.pdf))
 
 ## Papers
+Pixar provides a huge number of Papers [online](http://graphics.pixar.com/library/:
 * Per Christensen et al., _RenderMan: An Advanced Path Tracing Architecture for MovieRendering_ ([available online](http://graphics.pixar.com/library/RendermanTog2018/paper.pdf))
 * Per Christensen, Wojciech Jarosz, _The Path to Path-Traced Movies_ ([available online](http://graphics.pixar.com/library/PathTracedMovies/paper.pdf))
 * Ryusuke Villemin et al., _Art and Technology at Pixar, from Toy Story to today_ ([available online](http://graphics.pixar.com/library/SigAsia2015/paper.pdf))
-* Per Christensen, Henrik Wann Jebsen, _High Quality RenderingusingRay Tracing and Photon Mapping_ ([available online](http://graphics.pixar.com/library/HQRenderingCourse/paper.pdf))
+* Per Christensen, Henrik Wann Jebsen, _High Quality Rendering using Ray Tracing and Photon Mapping_ ([available online](http://graphics.pixar.com/library/HQRenderingCourse/paper.pdf))
 * Robert L. Cook, _Stochastic Sampling in Computer Graphics_ ([available online](http://graphics.pixar.com/library/StochasticSampling/paper.pdf))
 
 ## other Resources
