@@ -29,7 +29,7 @@ Some books that are very useful for writing a raytraycer and for learning math
 * Per Christensen, Wojciech Jarosz, _The Path to Path-Traced Movies_ ([available online](http://graphics.pixar.com/library/PathTracedMovies/paper.pdf))
 * Ryusuke Villemin et al., _Art and Technology at Pixar, from Toy Story to today_ ([available online](http://graphics.pixar.com/library/SigAsia2015/paper.pdf))
 * Per Christensen, Henrik Wann Jebsen, _High Quality RenderingusingRay Tracing and Photon Mapping_ ([available online](http://graphics.pixar.com/library/HQRenderingCourse/paper.pdf))
-* Robert L. Cook, _Stochastic Sampling in Computer Graphics _ ([available online](http://graphics.pixar.com/library/StochasticSampling/paper.pdf))
+* Robert L. Cook, _Stochastic Sampling in Computer Graphics_ ([available online](http://graphics.pixar.com/library/StochasticSampling/paper.pdf))
 
 ## other Resources
 * [Article series by Mike Farnsborough](http://renderspud.blogspot.com/2012/04/basic-ray-tracer-stage-1.html), [code](https://github.com/Tecla/Rayito)
