@@ -13,6 +13,7 @@
 #include "materials/mixmaterial.h"
 #include "materials/diffusematerial.h"
 #include "materials/glossymaterial.h"
+#include "materials/glassmaterial.h"
 #include "textures/checkerboardtexture.h"
 
 int main(int argc, char* argv[])
@@ -67,7 +68,7 @@ int main(int argc, char* argv[])
     );
 
     sparkles::DiffuseMaterial* plane_mat  = new sparkles::DiffuseMaterial(sparkles::Color(1,1,0));
-    plane_mat->set_texture(new sparkles::CheckerboardTexture(1));
+    plane_mat->set_texture(new sparkles::CheckerboardTexture());
 
     sparkles::Plane* plane = new sparkles::Plane(
         sparkles::Vector3(0,0,0),
@@ -76,7 +77,8 @@ int main(int argc, char* argv[])
         plane_mat
     );
 
-    sparkles::GlossyMaterial* sphere_mat = new sparkles::GlossyMaterial(sparkles::Color(0,1,1),0);
+    //sparkles::GlossyMaterial* sphere_mat = new sparkles::GlossyMaterial(sparkles::Color(0,1,1),0);
+    sparkles::GlassMaterial* sphere_mat = new sparkles::GlassMaterial();
 
     sparkles::Sphere* sphere = new sparkles::Sphere(
         sparkles::Vector3(-0.7,-2,0.5),
@@ -84,13 +86,13 @@ int main(int argc, char* argv[])
         sphere_mat
     );
     sparkles::Sphere* sphere2 = new sparkles::Sphere(
-        sparkles::Vector3(0.7,2,0.5),
+        sparkles::Vector3(0.7,-2,0.5),
         0.5,
         sphere_mat
     );
     sparkles::Rectangle* rect = new sparkles::Rectangle(
-        sparkles::Vector3(0,-3.5,0.5),
-        sparkles::Vector3(0,-1,0.1),
+        sparkles::Vector3(0.5,-3.5,0.5),
+        sparkles::Vector3(0,-1,0),
         1, 1,
         sphere_mat
     );
@@ -98,10 +100,9 @@ int main(int argc, char* argv[])
     sparkles::Scene scene{};
     scene.add_object(plane);
     scene.add_object(sphere);
-    scene.add_object(rect);
+    scene.add_object(sphere2);
     scene.set_camera(camera);
     scene.set_resolution(final_width, final_height);
-    scene.set_background_color(sparkles::Color(0.8,0.8,0.8));
     scene.no_aa();
 
     if(use_alpha_background) scene.use_alpha_transparency();

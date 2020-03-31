@@ -9,6 +9,7 @@ add_executable(
     "materials/normalmaterial.cpp"
     "materials/diffusematerial.cpp"
     "materials/glossymaterial.cpp"
+    "materials/glassmaterial.cpp"
     "intersectables/plane.cpp"
     "intersectables/sphere.cpp"
     "intersectables/rectangle.cpp"
