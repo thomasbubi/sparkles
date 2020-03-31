@@ -80,14 +80,27 @@ int main(int argc, char* argv[])
     //sparkles::GlossyMaterial* sphere_mat = new sparkles::GlossyMaterial(sparkles::Color(0,1,1),0);
     sparkles::GlassMaterial* sphere_mat = new sparkles::GlassMaterial();
 
+    //make glass balls hollow by putting another one with 96% of the outer radius inside
+    //https://www.realtimerendering.com/blog/about-that-glass-ball/
     sparkles::Sphere* sphere = new sparkles::Sphere(
         sparkles::Vector3(-0.7,-2,0.5),
         0.5,
         sphere_mat
     );
+    sparkles::Sphere* sphere_inner = new sparkles::Sphere(
+        sparkles::Vector3(-0.7,-2,0.5),
+        0.48,
+        sphere_mat
+    );
     sparkles::Sphere* sphere2 = new sparkles::Sphere(
         sparkles::Vector3(0.7,-2,0.5),
         0.5,
+        sphere_mat
+    );
+
+    sparkles::Sphere* sphere2_inner = new sparkles::Sphere(
+        sparkles::Vector3(0.7,-2,0.5),
+        0.48,
         sphere_mat
     );
     sparkles::Rectangle* rect = new sparkles::Rectangle(
@@ -100,7 +113,9 @@ int main(int argc, char* argv[])
     sparkles::Scene scene{};
     scene.add_object(plane);
     scene.add_object(sphere);
+    scene.add_object(sphere_inner);
     scene.add_object(sphere2);
+    scene.add_object(sphere2_inner);
     scene.set_camera(camera);
     scene.set_resolution(final_width, final_height);
     scene.no_aa();
