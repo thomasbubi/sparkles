@@ -83,8 +83,9 @@ Color Scene::color_along_ray(const Ray& ray, unsigned int recursion_depth, unsig
     Ray temp_ray = Ray( ray.origin(), ray.direction() );
     Vector3 intersection_point = temp_ray.at(t);
     Vector3 normal = nearest_object->get_normal_at_t(ray, t);
+    bool is_front_face = Vector3::dot(ray.direction(), normal) < 0;
 
-    struct ShaderInput args{this, ray, intersection_point, normal, recursion_depth, max_recursion_depth_, i,j};
+    struct ShaderInput args{this, ray, intersection_point, normal, is_front_face, recursion_depth, max_recursion_depth_, i,j};
 
     return nearest_object->material()->shade(args);
 }

@@ -14,6 +14,7 @@ struct ShaderInput {
     const Ray& ray;
     Vector3& intersection_point;
     Vector3& normal;
+    bool is_front_face;
     unsigned int current_recursion_depth;
     unsigned int max_recursion_depth;
     unsigned int pix_i;
