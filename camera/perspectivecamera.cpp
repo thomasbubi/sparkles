@@ -23,9 +23,9 @@ PerspectiveCamera::PerspectiveCamera(const Vector3& pos, const Vector3& dir, dou
      */
     axis_w_ = direction_ * -1;
     axis_w_.normalize();
-    axis_u_ = Vector3::cross( axis_w_, up_ );
+    axis_u_ = Vector3::cross( up_, axis_w_ );
     axis_u_.normalize();
-    axis_v_ = Vector3::cross(axis_u_, axis_w_);
+    axis_v_ = Vector3::cross( axis_w_, axis_u_ );
     axis_v_.normalize();
 
 }
