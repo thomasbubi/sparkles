@@ -11,6 +11,12 @@ Rectangle::Rectangle(const Vector3& position, const Vector3& normal, double widt
     height_ = height;
 
     up_ = Vector3(0,0,1);
+    double dot = Vector3::dot(normal_,up_);
+
+    if( ( dot > 0.9999 && dot < 1.0001 ) || ( dot > -1.0001 && dot < -0.9999 ) ) {
+        up_ = Vector3(0,1,1);
+    }
+
     axis_u_ = Vector3::cross(up_, normal_);
     axis_w_ = normal_ * -1;
     axis_v_ = Vector3::cross(axis_u_,axis_w_);
