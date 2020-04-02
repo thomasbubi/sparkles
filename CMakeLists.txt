@@ -16,5 +16,6 @@ add_executable(
     "external/lodepng.cpp"
     "camera/perspectivecamera.cpp"
     "scene/scene.cpp"
+    "scene/scenehelpers.cpp"
     "main.cpp"
 )

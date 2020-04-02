@@ -2,25 +2,13 @@
 #include <string>
 #include <vector>
 #include "external/lodepng.h"
-#include "math/vector3.h"
-#include "scene/scene.h"
-#include "camera/perspectivecamera.h"
-#include "intersectables/plane.h"
-#include "intersectables/sphere.h"
-#include "intersectables/rectangle.h"
-#include "materials/shadelessmaterial.h"
-#include "materials/normalmaterial.h"
-#include "materials/mixmaterial.h"
-#include "materials/diffusematerial.h"
-#include "materials/glossymaterial.h"
-#include "materials/glassmaterial.h"
-#include "textures/checkerboardtexture.h"
+#include "scene/scenehelpers.h"
 
 int main(int argc, char* argv[])
 {
     bool print_dog = false;
     unsigned long width = 600;
-    unsigned long height = 400;
+    unsigned long height = 600;
     std::string filename = "output.png";
     bool use_alpha_background = false;
 
@@ -59,69 +47,16 @@ int main(int argc, char* argv[])
 
     //initial fill image with white pixels and
     //set the std::vector containing the pixels to the right size
-    std::vector<unsigned char> image(final_width * final_height * 4, 255);
+    std::vector<unsigned char> image( final_width * final_height * 4, 255 );
 
-    sparkles::PerspectiveCamera camera(
-        sparkles::Vector3(0,0.5,0.75),
-        sparkles::Vector3(0,-1,0),
-        35
-    );
+    /*sparkles::Scene* glass_scene = sparkles::create_glass_scene( final_width, final_height, use_alpha_background );
+    glass_scene->render( image );
+    delete glass_scene;*/
 
-    sparkles::DiffuseMaterial* plane_mat  = new sparkles::DiffuseMaterial(sparkles::Color(1,1,0));
-    plane_mat->set_texture(new sparkles::CheckerboardTexture());
-
-    sparkles::Plane* plane = new sparkles::Plane(
-        sparkles::Vector3(0,0,0),
-        sparkles::Vector3(0,0,1),
-        //new sparkles::ShadelessMaterial( sparkles::Color(0.4,0.4,0.4) )
-        plane_mat
-    );
-
-    //sparkles::GlossyMaterial* sphere_mat = new sparkles::GlossyMaterial(sparkles::Color(0,1,1),0);
-    sparkles::GlassMaterial* sphere_mat = new sparkles::GlassMaterial();
-
-    //make glass balls hollow by putting another one with 96% of the outer radius inside
-    //https://www.realtimerendering.com/blog/about-that-glass-ball/
-    sparkles::Sphere* sphere = new sparkles::Sphere(
-        sparkles::Vector3(-0.7,-2,0.5),
-        0.5,
-        sphere_mat
-    );
-    sparkles::Sphere* sphere_inner = new sparkles::Sphere(
-        sparkles::Vector3(-0.7,-2,0.5),
-        0.48,
-        sphere_mat
-    );
-    sparkles::Sphere* sphere2 = new sparkles::Sphere(
-        sparkles::Vector3(0.7,-2,0.5),
-        0.5,
-        sphere_mat
-    );
-
-    sparkles::Sphere* sphere2_inner = new sparkles::Sphere(
-        sparkles::Vector3(0.7,-2,0.5),
-        0.48,
-        sphere_mat
-    );
-    sparkles::Rectangle* rect = new sparkles::Rectangle(
-        sparkles::Vector3(0.5,-3.5,0.5),
-        sparkles::Vector3(0,-1,0),
-        1, 1,
-        sphere_mat
-    );
-
-    sparkles::Scene scene{};
-    scene.add_object(plane);
-    scene.add_object(sphere);
-    scene.add_object(sphere_inner);
-    scene.add_object(sphere2);
-    scene.add_object(sphere2_inner);
-    scene.set_camera(camera);
-    scene.set_resolution(final_width, final_height);
-    scene.no_aa();
-
-    if(use_alpha_background) scene.use_alpha_transparency();
-    scene.render(image);
+    //todo render cornell box with a height equal to the width
+    sparkles::Scene* cornell_box_scene = sparkles::create_cornell_box_scene( final_width, final_height, use_alpha_background );
+    cornell_box_scene->render( image );
+    delete cornell_box_scene;
 
     //conversion from string (command-liune argumewnts of width or height) yields an unsigned long
     //lodepng::encode expects a unsigned int though

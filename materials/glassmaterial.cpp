@@ -46,7 +46,7 @@ Color GlassMaterial::shade(const ShaderInput &shader_input) const
     //total internal reflection
     if( has_total_internal_reflection ){
         return shader_input.scene->color_along_ray(reflected, shader_input.current_recursion_depth +1,
-                                                                shader_input.pix_i, shader_input.pix_j );
+                                                    shader_input.pix_i, shader_input.pix_j );
     }
 
     //calculate refracted ray
