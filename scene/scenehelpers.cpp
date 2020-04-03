@@ -73,10 +73,9 @@ Scene *create_glass_scene( unsigned int width, unsigned int height, bool use_aa,
     scene->add_object( sphere2_inner );
     scene->set_camera( camera );
     scene->set_resolution( width, height );
-    scene->no_aa();
     scene->set_filename( filename );
 
-    if( use_aa ) scene->use_alpha_transparency();
+    if( !use_aa ) scene->no_aa();
 
     return scene;
 }
@@ -155,10 +154,9 @@ Scene *create_cornell_box_scene( unsigned int width, bool use_aa, std::string fi
     scene->add_object( light );
     scene->set_camera( camera );
     scene->set_resolution( width, width );
-    scene->no_aa();
     scene->set_filename( filename );
 
-    if( use_aa ) scene->use_alpha_transparency();
+    if( !use_aa ) scene->no_aa();
 
     return scene;
 

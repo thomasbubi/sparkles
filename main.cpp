@@ -9,6 +9,7 @@ int main(int argc, char* argv[])
     unsigned long height = 400;
     std::string filename = "output.png";
     bool use_alpha_background = false;
+    bool use_antialiasing = false;
 
     //iterate over the command-line arguments - http://www.cplusplus.com/articles/DEN36Up4/
     for(int i=1; i<argc; i++){
@@ -34,6 +35,10 @@ int main(int argc, char* argv[])
             filename = argv[i+1];
         }
 
+        if( (argument == "--aa") ){
+            use_antialiasing = true;
+        }
+
         if( (argument == "--alpha" || argument == "-a") ){
             use_alpha_background = true;
         }
@@ -43,12 +48,12 @@ int main(int argc, char* argv[])
     unsigned int final_width = static_cast<unsigned int>(width);
     unsigned int final_height = static_cast<unsigned int>(height);
 
-    /*sparkles::Scene* glass_scene = sparkles::create_glass_scene( final_width, final_height, use_alpha_background, filename );
+    /*sparkles::Scene* glass_scene = sparkles::create_glass_scene( final_width, final_height, use_antialiasing, filename );
     glass_scene->render( image );
     delete glass_scene;*/
 
     //todo render cornell box with a height equal to the width
-    sparkles::Scene* cornell_box_scene = sparkles::create_cornell_box_scene( final_width, use_alpha_background, filename );
+    sparkles::Scene* cornell_box_scene = sparkles::create_cornell_box_scene( final_width, use_antialiasing, filename );
     cornell_box_scene->render( );
     delete cornell_box_scene;
 
