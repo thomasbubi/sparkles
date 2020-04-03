@@ -1,6 +1,8 @@
 #include "scene.h"
 #include <thread>
 #include "../math/randomizer.h"
+#include <vector>
+#include "../external/lodepng.h"
 
 namespace sparkles {
 
@@ -14,6 +16,7 @@ Scene::Scene()
     background_color_ = Color(0.1,0.1,0.1);
     spp_glossy_ = 10;
     use_aa_ = true;
+    filename_ = "output.png";
 }
 
 void Scene::print_time(const std::chrono::duration<double> &render_time)
@@ -90,10 +93,14 @@ Color Scene::color_along_ray(const Ray& ray, unsigned int recursion_depth, unsig
     return nearest_object->material()->shade(args);
 }
 
-void Scene::render(std::vector<unsigned char>& image)
+void Scene::render()
 {
     unsigned int number_of_threads = std::thread::hardware_concurrency();
     std::cout << "sparkles will calculate " << number_of_threads << " pixels parallel." << std::endl;
+
+    //initial fill image with white pixels and
+    //set the std::vector containing the pixels to the right size
+    std::vector<unsigned char> image( resolution_x_ * resolution_y_ * 4, 255 );
 
     auto time_begin = std::chrono::system_clock::now();
 
@@ -123,6 +130,12 @@ void Scene::render(std::vector<unsigned char>& image)
 
     auto time_end = std::chrono::system_clock::now();
     print_time( time_end - time_begin );
+
+    //conversion from string (command-liune argumewnts of width or height) yields an unsigned long
+    //lodepng::encode expects a unsigned int though
+    unsigned error = lodepng::encode( filename_.c_str(), image, resolution_x_, resolution_y_ );
+    std::cout << "PNG error: " << lodepng_error_text( error ) << std::endl;
+
 }
 
 }

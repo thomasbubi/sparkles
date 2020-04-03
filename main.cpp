@@ -1,14 +1,12 @@
 #include <iostream>
 #include <string>
-#include <vector>
-#include "external/lodepng.h"
 #include "scene/scenehelpers.h"
 
 int main(int argc, char* argv[])
 {
     bool print_dog = false;
     unsigned long width = 600;
-    unsigned long height = 600;
+    unsigned long height = 400;
     std::string filename = "output.png";
     bool use_alpha_background = false;
 
@@ -45,23 +43,14 @@ int main(int argc, char* argv[])
     unsigned int final_width = static_cast<unsigned int>(width);
     unsigned int final_height = static_cast<unsigned int>(height);
 
-    //initial fill image with white pixels and
-    //set the std::vector containing the pixels to the right size
-    std::vector<unsigned char> image( final_width * final_height * 4, 255 );
-
-    /*sparkles::Scene* glass_scene = sparkles::create_glass_scene( final_width, final_height, use_alpha_background );
+    /*sparkles::Scene* glass_scene = sparkles::create_glass_scene( final_width, final_height, use_alpha_background, filename );
     glass_scene->render( image );
     delete glass_scene;*/
 
     //todo render cornell box with a height equal to the width
-    sparkles::Scene* cornell_box_scene = sparkles::create_cornell_box_scene( final_width, final_height, use_alpha_background );
-    cornell_box_scene->render( image );
+    sparkles::Scene* cornell_box_scene = sparkles::create_cornell_box_scene( final_width, use_alpha_background, filename );
+    cornell_box_scene->render( );
     delete cornell_box_scene;
-
-    //conversion from string (command-liune argumewnts of width or height) yields an unsigned long
-    //lodepng::encode expects a unsigned int though
-    unsigned error = lodepng::encode( filename.c_str(), image, final_width, final_height );
-    std::cout << "PNG error: " << lodepng_error_text( error ) << std::endl;
 
     //always print an animal emoji - if dog isn't desired, print a cat
     if(!print_dog){

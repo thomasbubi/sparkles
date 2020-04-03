@@ -25,6 +25,7 @@ class Scene
     unsigned int max_recursion_depth_;
     unsigned int spp_glossy_;
     Color background_color_;
+    std::string filename_;
 
     inline void fill_pixel(
             std::vector<unsigned char>& image,
@@ -56,7 +57,7 @@ public:
     //this function allows for recursive ray tracing, e.g. for reflection & refraction
     //using recursion instead of iteration for this yields in cleaner code
     Color color_along_ray(const Ray& ray, unsigned int recursion_depth, unsigned int i, unsigned int j);
-    void render(std::vector<unsigned char>& image);
+    void render();
 
     inline unsigned int get_spp_glossy(){ return spp_glossy_; }
 
@@ -73,6 +74,7 @@ public:
     }
     inline void set_background_color(const Color& bg_color){ background_color_ = bg_color; }
     inline void use_alpha_transparency(){ use_alpha_transparency_ = true; }
+    inline void set_filename(const std::string& filename){ filename_ = filename; }
 };
 
 }
