@@ -16,6 +16,7 @@ Scene::Scene()
     background_color_ = Color(0.1,0.1,0.1);
     spp_glossy_ = 10;
     use_aa_ = true;
+    gamma_ = 2.2;
     filename_ = "output.png";
 }
 

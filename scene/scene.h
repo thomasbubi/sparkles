@@ -25,6 +25,7 @@ class Scene
     unsigned int max_recursion_depth_;
     unsigned int spp_glossy_;
     Color background_color_;
+    double gamma_;
     std::string filename_;
 
     inline void fill_pixel(
@@ -42,10 +43,16 @@ class Scene
             std::vector<unsigned char>& image,
             unsigned int i, unsigned int j,
             Color& color){
+
         unsigned int array_pos = ( j * resolution_x_ + i ) * 4;
-        image[ array_pos]     = static_cast<unsigned char>( color.r() * 255 );
-        image[ array_pos + 1] = static_cast<unsigned char>( color.g() * 255 );
-        image[ array_pos + 2] = static_cast<unsigned char>( color.b() * 255 );
+        double gamma_exp = 1.0 / gamma_;
+        double r = std::pow( color.r(), gamma_exp );
+        double g = std::pow( color.g(), gamma_exp );
+        double b = std::pow( color.b(), gamma_exp );
+
+        image[ array_pos]     = static_cast<unsigned char>( r * 255 );
+        image[ array_pos + 1] = static_cast<unsigned char>( g * 255 );
+        image[ array_pos + 2] = static_cast<unsigned char>( b * 255 );
         image[ array_pos + 3] = static_cast<unsigned char>( color.a() * 255 );
     }
     void print_time(const std::chrono::duration<double>& render_time);
@@ -73,6 +80,7 @@ public:
         max_recursion_depth_ = number_of_recursions;
     }
     inline void set_background_color(const Color& bg_color){ background_color_ = bg_color; }
+    inline void set_gamma(double new_gamma){ gamma_ = new_gamma; }
     inline void use_alpha_transparency(){ use_alpha_transparency_ = true; }
     inline void set_filename(const std::string& filename){ filename_ = filename; }
 };
