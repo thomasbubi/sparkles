@@ -75,7 +75,7 @@ Scene *create_glass_scene( unsigned int width, unsigned int height, bool use_aa,
     scene->set_resolution( width, height );
     scene->set_filename( filename );
 
-    if( !use_aa ) scene->no_aa();
+//    if( !use_aa ) scene->no_aa();
 
     return scene;
 }
@@ -90,9 +90,10 @@ Scene *create_cornell_box_scene( unsigned int width, bool use_aa, std::string fi
     );
 
 
-    Material* grey = new ShadelessMaterial( Color( 0.6, 0.6, 0.6 ) );
-    Material* red = new ShadelessMaterial( Color( 0.6, 0, 0 ) );
-    Material* green = new ShadelessMaterial( Color( 0, 0.6, 0 ) );
+    Material* grey = new DiffuseMaterial( Color( 0.7, 0.7, 0.7 ) );
+    Material* grey2 = new DiffuseMaterial( Color( 0.4, 0.4, 0.4 ) );
+    Material* red = new DiffuseMaterial( Color( 0.6, 0, 0 ) );
+    Material* green = new DiffuseMaterial( Color( 0, 0.6, 0 ) );
     Material* light_mat = new ShadelessMaterial( Color( 1, 1, 1 ) );
     Material* glass = new GlassMaterial( );
 
@@ -119,14 +120,14 @@ Scene *create_cornell_box_scene( unsigned int width, bool use_aa, std::string fi
 
     Rectangle* left = new Rectangle(
         Vector3( 1, 0, 1 ),
-        Vector3( 1, 0, 0 ),
+        Vector3( -1, 0, 0 ),
         2, 2,
         red
     );
 
     Rectangle* right = new Rectangle(
         Vector3( -1, 0, 1 ),
-        Vector3( -1, 0, 0 ),
+        Vector3( 1, 0, 0 ),
         2, 2,
         green
     );
@@ -134,7 +135,7 @@ Scene *create_cornell_box_scene( unsigned int width, bool use_aa, std::string fi
     Sphere* sphere = new Sphere(
         Vector3( -0.4, 0.4, 0.25 ),
         0.25,
-        glass
+        grey2//glass
     );
 
     Rectangle* light = new Rectangle(
@@ -156,6 +157,8 @@ Scene *create_cornell_box_scene( unsigned int width, bool use_aa, std::string fi
     scene->set_resolution( width, width );
     scene->set_filename( filename );
     scene->set_gamma(1.6);
+    scene->set_recursion_depth(5);
+    scene->set_background_color(Color(1.0,1.0,1.0));
 
     if( !use_aa ) scene->no_aa();
 

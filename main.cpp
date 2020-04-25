@@ -48,11 +48,10 @@ int main(int argc, char* argv[])
     unsigned int final_width = static_cast<unsigned int>(width);
     unsigned int final_height = static_cast<unsigned int>(height);
 
-    /*sparkles::Scene* glass_scene = sparkles::create_glass_scene( final_width, final_height, use_antialiasing, filename );
-    glass_scene->render( image );
-    delete glass_scene;*/
+//    sparkles::Scene* glass_scene = sparkles::create_glass_scene( final_width, final_height, use_antialiasing, filename );
+//    glass_scene->render( );
+//    delete glass_scene;
 
-    //todo render cornell box with a height equal to the width
     sparkles::Scene* cornell_box_scene = sparkles::create_cornell_box_scene( final_width, use_antialiasing, filename );
     cornell_box_scene->render( );
     delete cornell_box_scene;
