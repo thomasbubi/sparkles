@@ -7,6 +7,7 @@ add_executable(
     "textures/checkerboardtexture.cpp"
     "materials/shadelessmaterial.cpp"
     "materials/normalmaterial.cpp"
+    "materials/emissionmaterial.cpp"
     "materials/diffusematerial.cpp"
     "materials/glossymaterial.cpp"
     "materials/glassmaterial.cpp"

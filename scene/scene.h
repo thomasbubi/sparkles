@@ -15,7 +15,7 @@ class Scene
     //https://stackoverflow.com/questions/2160920/why-cant-we-declare-a-stdvectorabstractclass
     //todo: use smart pointers here instead of raw pointers
     std::vector<Intersectable*> objects_;
-    //std::vector<Lamp*> lamps_;
+    std::vector<Intersectable*> light_sources_;
     unsigned int resolution_x_;
     unsigned int resolution_y_;
     bool use_alpha_transparency_;
@@ -61,7 +61,10 @@ class Scene
 
 public:
     Scene();
-    inline void add_object(Intersectable* obj){ objects_.push_back(obj); }
+    inline void add_object(Intersectable* obj){
+        objects_.push_back(obj);
+        if(obj->material()->get_class_name() == "EmissionMaterial") light_sources_.push_back(obj);
+    }
     //this function allows for recursive ray tracing, e.g. for reflection & refraction
     //using recursion instead of iteration for this yields in cleaner code
     Color color_along_ray(const Ray& ray, unsigned int recursion_depth, unsigned int i, unsigned int j);

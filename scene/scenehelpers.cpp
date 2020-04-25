@@ -6,6 +6,7 @@
 #include "../materials/shadelessmaterial.h"
 #include "../materials/normalmaterial.h"
 #include "../materials/mixmaterial.h"
+#include "../materials/emissionmaterial.h"
 #include "../materials/diffusematerial.h"
 #include "../materials/glossymaterial.h"
 #include "../materials/glassmaterial.h"
@@ -33,14 +34,15 @@ Scene *create_glass_scene( unsigned int width, unsigned int height, bool use_aa,
     );
 
     //GlossyMaterial* sphere_mat = new GlossyMaterial(Color(0,1,1),0);
-    GlassMaterial* sphere_mat = new GlassMaterial();
+    DiffuseMaterial* sphere_mat = new DiffuseMaterial( Color( 0.6, 0, 0 ) );
+    DiffuseMaterial* sphere_mat2 = new DiffuseMaterial( Color( 0.0, 0.6, 0 ) );
 
     //make glass balls hollow by putting another one with 96% of the outer radius inside
     //https://www.realtimerendering.com/blog/about-that-glass-ball/
     Sphere* sphere = new Sphere(
         Vector3(-0.7,-2,0.5),
         0.5,
-        sphere_mat
+        sphere_mat2
     );
     Sphere* sphere_inner = new Sphere(
         Vector3( -0.7, -2, 0.5),
@@ -94,7 +96,7 @@ Scene *create_cornell_box_scene( unsigned int width, bool use_aa, std::string fi
     Material* grey2 = new DiffuseMaterial( Color( 0.4, 0.4, 0.4 ) );
     Material* red = new DiffuseMaterial( Color( 0.6, 0, 0 ) );
     Material* green = new DiffuseMaterial( Color( 0, 0.6, 0 ) );
-    Material* light_mat = new ShadelessMaterial( Color( 1, 1, 1 ) );
+    Material* light_mat = new EmissionMaterial( Color( 1, 1, 1 ), 5 );
     Material* glass = new GlassMaterial( );
 
     Rectangle* bottom = new Rectangle(

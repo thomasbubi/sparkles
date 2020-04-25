@@ -26,6 +26,7 @@ class Material
 public:
     inline Material(){};
     virtual Color shade( const ShaderInput& shader_input ) const = 0;
+    virtual inline std::string get_class_name() const {return ""; };
 };
 
 }
