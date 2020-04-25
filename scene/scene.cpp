@@ -13,8 +13,9 @@ Scene::Scene()
     t_max_ = 1'000'000.0;
     t_min_ = 0.05;
     max_recursion_depth_ = 3;
-    background_color_ = Color(0.1,0.1,0.1);
+    background_color_ = Color(0.5,0.5,0.5);
     spp_glossy_ = 10;
+    spp_diffuse_ = 200;
     use_aa_ = true;
     gamma_ = 2.2;
     filename_ = "output.png";
@@ -49,7 +50,7 @@ std::array<UV, 4> Scene::jitter_aa_samples() const
 
 Color Scene::color_along_ray(const Ray& ray, unsigned int recursion_depth, unsigned int i, unsigned int j)
 {
-    if(recursion_depth > max_recursion_depth_) { return Color(0,0,0); }
+    if(recursion_depth > max_recursion_depth_) { return background_color_; }
 
     //store a pointer to the object with lowest distance in front of camera
     double t = t_max_;
@@ -63,6 +64,10 @@ Color Scene::color_along_ray(const Ray& ray, unsigned int recursion_depth, unsig
             nearest_object = temp_object;
             t = temp_t;
         }
+    }
+
+    if(i == 0 && j == 300){
+        std::cout << t << " || " << recursion_depth << std::endl;
     }
 
     //use t_min_ (the near clipping plane) only when camera ray is traced through the scene,

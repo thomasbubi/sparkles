@@ -24,6 +24,7 @@ class Scene
     double t_min_;//near clipping plane
     unsigned int max_recursion_depth_;
     unsigned int spp_glossy_;
+    unsigned int spp_diffuse_;
     Color background_color_;
     double gamma_;
     std::string filename_;
@@ -67,6 +68,7 @@ public:
     void render();
 
     inline unsigned int get_spp_glossy(){ return spp_glossy_; }
+    inline unsigned int get_spp_diffuse(){ return spp_diffuse_; }
 
     inline void no_aa(){ use_aa_ = false; }
 
