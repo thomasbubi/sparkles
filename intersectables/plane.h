@@ -7,7 +7,6 @@ namespace sparkles {
 
 class Plane : public Intersectable
 {
-    Vector3 position_;
     Vector3 normal_;
 public:
     Plane(const Vector3& position, const Vector3& normal, Material* material);

@@ -7,7 +7,6 @@ namespace sparkles {
 
 class Sphere : public Intersectable
 {
-    Vector3 position_;
     double radius_;
 public:
     Sphere(const Vector3& position, double radius, Material* material);

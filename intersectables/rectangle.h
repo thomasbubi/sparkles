@@ -7,7 +7,6 @@ namespace sparkles {
 
 class Rectangle : public Intersectable
 {
-    Vector3 position_;
     Vector3 normal_;
     double width_;
     double height_;

@@ -11,6 +11,7 @@ class Intersectable
     //AABB bounding_box_;
 protected:
     Material* material_;
+    Vector3 position_;
 public:
     inline Intersectable(Material* material){ material_ = material; }
     inline ~Intersectable(){ delete material_; }
@@ -18,6 +19,7 @@ public:
     virtual inline std::string get_class_name() const {return ""; };
     virtual Vector3 get_normal_at_t( const Ray& ray, double t) = 0;
     inline Material* material(){ return material_; }
+    inline Vector3 position() const { return position_; }//todo check for unnecessary copying
     constexpr static double NO_INTERSECTION = -1'000'000'000'000;
 };
 
