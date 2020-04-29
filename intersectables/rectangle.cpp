@@ -60,4 +60,11 @@ double Rectangle::intersect(const Ray &ray) {
 
 }
 
+Vector3 Rectangle::get_sample_point(){
+    double u = random_between_0_and_1() - 0.5;
+    double v = random_between_0_and_1() - 0.5;
+
+    return position_ + axis_u_ * u + axis_v_ * v;
+}
+
 }

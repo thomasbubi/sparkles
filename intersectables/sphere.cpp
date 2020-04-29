@@ -24,4 +24,9 @@ double Sphere::intersect(const Ray &ray)
     return (-b - sqrt(discriminant) ) / 2*a;
 }
 
+
+Vector3 Sphere::get_sample_point(){
+    return position_ + random_vector_on_unit_sphere() * radius_;
+}
+
 }

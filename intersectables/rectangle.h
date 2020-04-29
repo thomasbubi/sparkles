@@ -19,6 +19,8 @@ public:
     double intersect(const Ray &ray);
     inline std::string get_class_name() const { return "Rectangle"; }
     inline Vector3 get_normal_at_t(const Ray& ray, double t) { return normal_; }
+    Vector3 get_sample_point();
+
 };
 
 }

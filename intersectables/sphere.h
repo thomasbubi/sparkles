@@ -19,6 +19,7 @@ public:
         n.normalize();
         return n;
     };
+    Vector3 get_sample_point();
 
 };
 

@@ -17,4 +17,12 @@ double Plane::intersect(const Ray &ray)
     return t;
 }
 
+Vector3 Plane::get_sample_point(){
+    //method isn't really useful, but is mandatory when class inherits from Intersectable
+    std::cout << "Plane::get_sample_point() | ";
+    std::cout << "infinite planes should not be used as light sources | ";
+    std::cout << "Please don't use this as long as it doesn't return anything useful." << std::endl;
+    return position_;
+}
+
 }
