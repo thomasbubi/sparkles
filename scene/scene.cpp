@@ -107,6 +107,10 @@ void Scene::render()
     auto time_begin = std::chrono::system_clock::now();
 
     for(unsigned int j=0; j<resolution_y_; j++){
+        //print render progress in console - this line overwrites itself
+        double progress = static_cast<int>( static_cast<double>(j) / static_cast<double>(resolution_y_) * 100 );
+        std::cout << "rendered: " << progress << "%\r" << std::flush;
+
         for(unsigned int i=0; i< resolution_x_; i++){
 
             if(use_aa_){
