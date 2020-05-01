@@ -4,6 +4,7 @@
 
 namespace sparkles {
 
+//if a warning appears due to implicit conversion from long to unsigned long, this can be ignored
 static unsigned long seed = std::chrono::system_clock::now().time_since_epoch().count();
 static std::mt19937 mersenne_twister(seed);
 static std::uniform_real_distribution<double> uni(0.0,1.0);

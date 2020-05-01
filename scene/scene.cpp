@@ -1,6 +1,5 @@
 #include "scene.h"
 #include <thread>
-#include "../math/randomizer.h"
 #include <vector>
 #include "../external/lodepng.h"
 
@@ -15,7 +14,7 @@ Scene::Scene()
     max_recursion_depth_ = 3;
     background_color_ = Color(0.5,0.5,0.5);
     spp_glossy_ = 10;
-    spp_diffuse_ = 10;
+    spp_diffuse_ = 100;
     use_aa_ = true;
     gamma_ = 2.2;
     filename_ = "output.png";

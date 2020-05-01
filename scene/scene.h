@@ -73,6 +73,11 @@ public:
     inline unsigned int get_spp_glossy(){ return spp_glossy_; }
     inline unsigned int get_spp_diffuse(){ return spp_diffuse_; }
 
+    inline std::vector<Intersectable*> const& get_light_sources() const {
+        //see https://stackoverflow.com/a/21227582 for returning vectors that are members of a class
+        return light_sources_;
+    }
+
     inline void no_aa(){ use_aa_ = false; }
 
     inline void set_resolution(unsigned int res_x, unsigned int res_y){
