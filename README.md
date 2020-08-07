@@ -34,3 +34,5 @@ Pixar provides a huge number of Papers [online](http://graphics.pixar.com/librar
 
 ## other Resources
 * [Article series by Mike Farnsborough](http://renderspud.blogspot.com/2012/04/basic-ray-tracer-stage-1.html), [code](https://github.com/Tecla/Rayito)
+* [_Debugging Your Renderer_ - article by Matt Pharr](https://pharr.org/matt/blog/2020/04/26/debugging-intro.html)
+* [_The Center of the Pixel is (0.5,0.5)_ - article by Eric Haines](https://www.realtimerendering.com/blog/the-center-of-the-pixel-is-0-50-5/)
